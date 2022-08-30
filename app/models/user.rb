@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :recipes, foreign_key: 'creator'
   has_many :comments
+
+  validates :first_name, length: { maximum: 15 }
 end

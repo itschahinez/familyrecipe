@@ -4,5 +4,5 @@ class Circle < ApplicationRecord
   has_many :participations
   has_many :users, through: :users
 
-  validates :name, presence: true, uniqueness: { scope: :user }
+  validates :name, presence: true, length: { maximum: 15 }
 end

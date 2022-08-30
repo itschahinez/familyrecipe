@@ -10,4 +10,5 @@ class Recipe < ApplicationRecord
   validates :name, :description, :category, :creator, :prep_time, presence: true
   validates :category, inclusion: { in: %w[starter main dessert] }
   validates :prep_time, numericality: { only_integer: true }
+  validates :name, uniqueness: { scope: :user }
 end
