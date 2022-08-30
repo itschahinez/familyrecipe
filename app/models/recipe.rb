@@ -1,7 +1,8 @@
 class Recipe < ApplicationRecord
+  has_one_attached :photo
   enum category: { entree: 0, main: 1, dessert: 2 }
 
-  belongs_to :creator, foreign_key: :creator_id, class_name: 'User', dependent: :destroy
+  belongs_to :creator, foreign_key: :creator_id, class_name: 'User'
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
   has_many :circle_recipes
