@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  enum category: { entree: 0, main: 1, dessert: 2 }
+
   belongs_to :creator, foreign_key: :creator_id, class_name: 'User', dependent: :destroy
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
@@ -11,9 +13,7 @@ class Recipe < ApplicationRecord
   validates :description, presence: true
   validates :category, presence: true
   validates :prep_time, presence: true
-  validates :category, inclusion: { in: %w[starter main dessert] }
+  # validates :category, inclusion: { in: category.keys }
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
-
-  enum category: { starter: 0, main: 1, dessert: 2 }
 end

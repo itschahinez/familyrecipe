@@ -3,7 +3,7 @@
     <div class="form">
       <%= simple_form_for(@recipe) do |f| %>
         <%= f.input :name %>
-        <%# <%= f.input :category, collection: Recipe::CATEGORIES, include_blank: false %> %>
+        <%= f.input :category, collection: Recipe.categories, include_blank: false %>
         <%= f.input :prep_time, as: :time %>
         <%= f.input :description %>
         <%= f.submit %>
