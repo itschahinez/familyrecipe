@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_095231) do
     t.string "name"
     t.text "description"
     t.string "category"
-    t.bigint "creator_id", null: false
+    t.bigint "creator_id"
     t.integer "prep_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
