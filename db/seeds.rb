@@ -18,7 +18,7 @@ eggplant_parmesan = Recipe.create!(
   description: 'Place eggplant slices in a large bowl in layers, sprinkling each layer with salt. Let stand for 30 minutes to drain. Rinse and dry on paper towels.
   Heat olive oil in a large skillet over medium heat. Whisk eggs with water and flour until smooth. Dip eggplant slices in batter and fry in the hot oil until golden brown, working in batches of 2 to 3 slices at a time.
   Mix seasoned bread crumbs with Parmesan cheese in a bowl. Place 1/4 of the eggplant slices into a slow cooker and top with 1/4 of the crumbs, 1/4 of the marinara sauce, and 1/4 of the mozzarella cheese. Repeat layers three more times.',
-  category: 'main',
+  category: 1,
   creator_id: cyril.id,
   prep_time: 330
 )
@@ -44,7 +44,7 @@ chocolate_mousse = Recipe.create!(
   Melt chocolate chips in the top of a double boiler over simmering water, stirring frequently and scraping down the sides with a rubber spatula to avoid scorching.
   Fold melted chocolate into the mascarpone cheese mixture.
   Refrigerate until set, 1 to 2 hours.',
-  category: 'dessert',
+  category: 2,
   creator_id: mercotte.id,
   prep_time: 75
 )
@@ -65,7 +65,7 @@ tzatziki = Recipe.create!(
   name: 'Tzatziki',
   description: 'Combine yogurt, grated cucumber, lemon juice, olive oil, and garlic together in a large bowl. Add dill, salt, pepper, and lemon zest; mix until smooth.
   Pour into a serving dish, cover tightly, and refrigerate 8 hours before serving.',
-  category: 'starter',
+  category: 0,
   creator_id: mercotte.id,
   prep_time: 15
 )

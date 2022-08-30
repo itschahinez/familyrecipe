@@ -14,4 +14,6 @@ class Recipe < ApplicationRecord
   validates :category, inclusion: { in: %w[starter main dessert] }
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
+
+  enum category: { starter: 0, main: 1, dessert: 2 }
 end
