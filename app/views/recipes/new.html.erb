@@ -1,2 +1,12 @@
-<h1>Recipes#new</h1>
-<p>Find me in app/views/recipes/new.html.erb</p>
+<div class="container">
+    <h1>Create a new recipe</h1>
+    <div class="form">
+      <%= simple_form_for(@recipe) do |f| %>
+        <%= f.input :name %>
+        <%# <%= f.input :category, collection: Recipe::CATEGORIES, include_blank: false %> %>
+        <%= f.input :prep_time, as: :time %>
+        <%= f.input :description %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+</div>
