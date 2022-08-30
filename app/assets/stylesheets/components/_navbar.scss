@@ -1,12 +1,25 @@
-.navbar-lewagon {
+.navbar-familyrecipe {
   justify-content: space-between;
-  background: white;
+  background: #FC913A;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-familyrecipe .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-familyrecipe .navbar-brand img {
   width: 40px;
+}
+
+.nav-content {
+  color: white;
+  display: inline-block;
+}
+
+.fa-house {
+  color: white;
+}
+
+.navbar-content {
+  margin: Opx 20px;
 }
