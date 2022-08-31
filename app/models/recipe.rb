@@ -17,4 +17,6 @@ class Recipe < ApplicationRecord
   # validates :category, inclusion: { in: category.keys }
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
+
+  accepts_nested_attributes_for :ingredients
 end

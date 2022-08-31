@@ -4,4 +4,5 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true
   validates :unit, length: { maximum: 5 }
+  accepts_nested_attributes_for :recipe_ingredients
 end
