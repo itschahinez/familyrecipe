@@ -1,12 +1,12 @@
 <div class="banner">
-  <img class="img-banner" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" alt="image">
+  <img class="img-banner" src="<%= @recipe.photo.nil? ? @recipe.photo : 'https://source.unsplash.com/random/?food' %>" alt="image">
 </div>
 
 
 <div class="recipe-infos">
   <div class="infos">
-    <h2>Rasberry Brownie</h2>
-    <p>Time preparation <br>50minutes</p>
+    <h2><%= @recipe.name %></h2>
+    <p>Time preparation <br><%= @recipe.preptime_hour > 0 ? "#{@recipe.preptime_hour} h " : "" %><%= @recipe.preptime_mn > 0 ? "#{@recipe.preptime_mn} min" : "" %></p>
   </div>
 
   <div class="creator-infos">
@@ -16,29 +16,50 @@
 </div>
 
 
-<div class="container">
-  <div class="ingredient">
-    <h3>Ingredients</h3>
+<div class="container container-orange">
+  <div class="d-flex justify-content-between mb-2">
+
+    <div class="ingredient">
+      <h3>Ingredients</h3>
       <ul>
-        <li>4 eggs</li>
-        <li>200gr of sugar</li>
-        <li>200gr of</li>
-        <li>4tbs of flour</li>
-        <li>500gr of Rasberry</li>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient.name} #{ingredient.unit}"  %></li>
+      <% end %>
       </ul>
+    </div>
+
+    <div class="symbol">
+      <ul>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-comment fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-trash-can fa-lg"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
+
   <div class="instruction">
-    <h3>Instruction</h3>
-      <ul>
-        <li>Beat the eggs and sugar together</li>
-        <li>Add the melted butter</li>
-        <li>Add the flour spoon by spoon and mix in between each</li>
-        <li>Bake at 180C for 20 minutes</li>
-      </ul>
+    <h3>Instructions</h3>
+      <p><%= @recipe.description %></p>
   </div>
-  <div class="symbol">
-    <ul>
-      <li></li>
-    </ul>
-  </div>
+
 </div>

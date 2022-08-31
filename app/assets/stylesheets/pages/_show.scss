@@ -4,14 +4,32 @@
 }
 
 .recipe-infos {
-  padding: 3px;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
-  margin: 10px 15px 10px 15px;
 }
 
-.container {
+.container-orange {
   background-color: $rectangle-color;
-  margin-right: 15px;
-  margin-left: 15px;
+  width: calc(100vw - 1rem);
+  padding: 2rem;
+}
+
+.symbol ul li {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.symbol {
+  .fa-solid {
+    color: $primary-color;
+  }
+}
+
+.ingredient h3 {
+  text-decoration: underline;
+}
+
+.instruction h3 {
+  text-decoration: underline;
 }
