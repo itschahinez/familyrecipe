@@ -13,7 +13,7 @@
           <ul class="recipe-list">
             <li>
               <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
-                <p><%= recipe.name %></p>
+                <p><%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %></p>
                 <p><%= recipe.preptime_hour > 0 ? "#{recipe.preptime_hour} h " : "" %><%= recipe.preptime_mn > 0 ? "#{recipe.preptime_mn} min" : "" %></p>
               </div>
             </li>
@@ -36,8 +36,8 @@
             <ul class="recipe-list">
               <li>
                 <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
-                  <p><%= recipe.name %></p>
-                  <p><%= recipe.preptime_hour %></p>
+                  <p><%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %></p>
+                  <p><%= recipe.preptime_hour > 0 ? "#{recipe.preptime_hour} h " : "" %><%= recipe.preptime_mn > 0 ? "#{recipe.preptime_mn} min" : "" %></p>
                 </div>
               </li>
             </ul>
