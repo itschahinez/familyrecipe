@@ -1,2 +1,65 @@
-<h1>Recipes#update</h1>
-<p>Find me in app/views/recipes/update.html.erb</p>
+<div class="banner">
+  <img class="img-banner" src="<%= @recipe.photo.nil? ? @recipe.photo : 'https://source.unsplash.com/random/?food' %>" alt="image">
+</div>
+
+
+<div class="recipe-infos">
+  <div class="infos">
+    <h2><%= @recipe.name %></h2>
+    <p>Time preparation <br><%= @recipe.preptime_hour > 0 ? "#{@recipe.preptime_hour} h " : "" %><%= @recipe.preptime_mn > 0 ? "#{@recipe.preptime_mn} min" : "" %></p>
+  </div>
+
+  <div class="creator-infos">
+    <p>Creator</p>
+    <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+  </div>
+</div>
+
+
+<div class="container container-orange">
+  <div class="d-flex justify-content-between mb-2">
+
+    <div class="ingredient">
+      <h3>Ingredients</h3>
+      <ul>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient.name} #{ingredient.unit}"  %></li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="symbol">
+      <ul>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-pen-to-square fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-circle-plus fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-comment fa-lg"></i>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa-solid fa-trash-can fa-lg"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instruction">
+    <h3>Instructions</h3>
+      <p><%= @recipe.description %></p>
+  </div>
+
+</div>
