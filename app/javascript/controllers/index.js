@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import InsertRecipeImageController from "./insert_recipe_image_controller"
+application.register("insert-recipe-image", InsertRecipeImageController)
