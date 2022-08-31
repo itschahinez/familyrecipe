@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.creator = current_user
+    @recipe.prep_time = @recipe.preptime_hour * 60 + @recipe.preptime_mn
     if @recipe.save
       raise
       redirect_to recipe_path(@recipe)
