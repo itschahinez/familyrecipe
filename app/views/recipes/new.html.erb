@@ -2,11 +2,15 @@
     <h1>Create a new recipe</h1>
     <div class="form">
       <%= simple_form_for(@recipe) do |f| %>
+        <%= f.input :photo, as: :file %>
         <%= f.input :name %>
-        <%= f.input :category, collection: Recipe.categories, include_blank: false %>
-        <%= f.input :prep_time, as: :time %>
+        <%= f.input :category, collection: Recipe.categories.keys, include_blank: false %>
+        <%= f.input :prep_time %>
         <%= f.input :description %>
         <%= f.submit %>
       <% end %>
     </div>
 </div>
+
+<%# :input_html => {:onChange => 'upload();'} %>
+ <%# data-controller="insert-recipe-image" %>
