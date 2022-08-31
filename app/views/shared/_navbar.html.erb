@@ -1,36 +1,33 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-familyrecipe">
-  <div class="container-navbar">
-    <div class="col-sm-12 navbar-content">
-      <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="fa-solid fa-house"></i>
-      <% end %>
-
-      <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> %>
-      <ul class="menu">
-              <%= link_to "My circle", circles_path, class: "nav-link" %>
-            </li>
-            <li class="menu">
-              <%= link_to "Recipes", recipes_path, class: "nav-link" %>
-            </li>
-      </ul>
-    </div>
-    <%# <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <%# <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          <%# </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          <%# </li> %>
-        <%# <% else %>
-          <%# <li class="menu">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          <%# </li>
+<div class="container-navbar <%= yield(:color) %>">
+  <div class="col-sm-12 navigation-content">
+    <ul class="menu">
+      <li class="menu-action">
+        <%= link_to root_path, class: "navbar-content" do %>
+          <i class="fa-solid fa-house fa-xl"></i>
         <% end %>
-      <%# </ul>  %>
-    <%# </div> %>
+      </li>
+      <li class="menu-action">
+        <%= link_to "Circles", circles_path, class: "navbar-content" %>
+      </li>
+      <li class="menu-action">
+        <%= link_to "Recipes", recipes_path, class: "navbar-content" %>
+      </li>
+      <li class="nav-item dropdown">
+        <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <ul>
+            <% if user_signed_in? %>
+              <li class="menu-action">
+                <%= link_to "Logout", destroy_user_session_path, class: "navbar-content dropdown-item" %>
+              </li>
+            <% else %>
+              <li class="menu-action">
+                <%= link_to "Login", new_user_session_path, class: "navbar-content dropdown-item" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
