@@ -1,3 +1,5 @@
+<%= content_for(:color) { 'navbar-white'} %>
+
 <div class="banner">
   <img class="img-banner" src="<%= @recipe.photo.nil? ? @recipe.photo : 'https://source.unsplash.com/random/?food' %>" alt="image">
 </div>
@@ -11,7 +13,7 @@
 
   <div class="creator-infos">
     <p>Creator</p>
-    <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+      <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
   </div>
 </div>
 
@@ -32,6 +34,12 @@
       <ul>
         <li>
           <%= link_to '#' do %>
+            <i class="fa-solid fa-comment fa-lg"></i>
+          <% end %>
+        </li>
+        <% if current_user == @recipe.creator %>
+          <li>
+          <%= link_to '#' do %>
             <i class="fa-solid fa-pen-to-square fa-lg"></i>
           <% end %>
         </li>
@@ -44,15 +52,11 @@
 
         <li>
           <%= link_to '#' do %>
-            <i class="fa-solid fa-comment fa-lg"></i>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to '#' do %>
             <i class="fa-solid fa-trash-can fa-lg"></i>
           <% end %>
         </li>
+        <% end %>
+
       </ul>
     </div>
   </div>
