@@ -94,3 +94,20 @@ banana = Ingredient.create!(name: 'banana', unit: '')
 vegetable_oil = Ingredient.create!(name: 'vegetable oil', unit: 'ml')
 
 puts "created rest of ingredients"
+
+circle1 = Circle.create!(name: "My Family")
+circle2 = Circle.create!(name: "My Besties")
+
+puts "created circles"
+
+Participation.create!(circle: circle1, user: cyril)
+Participation.create!(circle: circle2, user: cyril)
+Participation.create!(circle: circle2, user: mercotte)
+
+puts "created participations"
+
+CircleRecipe.create!(circle: circle1, recipe: eggplant_parmesan)
+CircleRecipe.create!(circle: circle1, recipe: chocolate_mousse)
+CircleRecipe.create!(circle: circle1, recipe: tzatziki)
+CircleRecipe.create!(circle: circle2, recipe: eggplant_parmesan)
+puts "created circle recipes"
