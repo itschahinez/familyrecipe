@@ -3,8 +3,16 @@
     <div class="form">
       <%= simple_form_for(@recipe) do |f| %>
         <%= f.input :name %>
-        <%= f.input :category, collection: Recipe.categories, include_blank: false %>
-        <%= f.input :prep_time, as: :time %>
+        <%= f.input :category, collection: Recipe.categories.keys, include_blank: false %>
+        <div class="preptime">
+        <p> Prep time:</p>
+          <div class="preptime-input d-flex">
+            <%= f.input :preptime_hour, input_html: { min: 0 }, label: false %>
+            <p>h</p>
+            <%= f.input :preptime_mn, input_html: { min: 0, max: 60, step: 15 }, label: false %>
+            <p>mn</p>
+          </div>
+        </div>
         <%= f.input :description %>
         <%= f.submit %>
       <% end %>
