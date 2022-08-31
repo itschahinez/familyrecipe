@@ -1,3 +1,14 @@
+.recipe-index-container {
+  h2, h3 {
+    color: $primary-color;
+  }
+
+  h2 {
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+}
+
 .recipe-list {
   list-style: none;
   padding: 0;
