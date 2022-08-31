@@ -19,5 +19,5 @@ class Recipe < ApplicationRecord
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
 
-  accepts_nested_attributes_for :recipe_ingredients
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
 end
