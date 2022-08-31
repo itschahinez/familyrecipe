@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_095231) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "category"
+    t.string "category"
     t.bigint "creator_id"
     t.integer "prep_time"
     t.datetime "created_at", null: false
