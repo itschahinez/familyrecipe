@@ -1,2 +1,24 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<% if @my_recipes.empty? %>
+  <p>You don't have any recipe yet!<p>
+  <p>Click here to add a new one:</p>
+  <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+<% else %>
+  <h2>From your recipes</h2>
+  <ul>
+    <% @my_recipes.each do |recipe| %>
+      <li><%= recipe.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% unless @my_circles.empty? %>
+  <h2>From your circles</h2>
+  <% @my_circles.each do |circle| %>
+    <h3><%= circle.name %></h3>
+    <ul>
+      <% circle.recipes.each do |recipe| %>
+        <li><%= recipe.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
