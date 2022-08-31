@@ -77,9 +77,9 @@ tzatziki = Recipe.create!(
 )
 
 cucumber = Ingredient.create!(name: 'cucumber', unit: '')
-yoghurt = Ingredient.create!(name: 'yoghurt', unit: 'cup')
+yoghurt = Ingredient.create!(name: 'yoghurt', unit: 'ml')
 garlic = Ingredient.create!(name: 'garlic', unit: 'clove')
-olive_oil = Ingredient.create!(name: 'olive oil', unit: 'tbsp')
+olive_oil = Ingredient.create!(name: 'olive oil', unit: 'ml')
 
 RecipeIngredient.create!(ingredient: cucumber, recipe: tzatziki, quantity: 1)
 RecipeIngredient.create!(ingredient: yoghurt, recipe: tzatziki, quantity: 1)
@@ -87,3 +87,10 @@ RecipeIngredient.create!(ingredient: garlic, recipe: tzatziki, quantity: 2)
 RecipeIngredient.create!(ingredient: olive_oil, recipe: tzatziki, quantity: 3)
 
 puts "Tzatziki done"
+
+butter = Ingredient.create!(name: 'butter', unit: 'gr')
+flour = Ingredient.create!(name: 'flour', unit: 'gr')
+banana = Ingredient.create!(name: 'banana', unit: '')
+vegetable_oil = Ingredient.create!(name: 'vegetable oil', unit: 'ml')
+
+puts "created rest of ingredients"

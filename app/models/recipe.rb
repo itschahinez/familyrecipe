@@ -14,11 +14,10 @@ class Recipe < ApplicationRecord
   validates :description, presence: true
   validates :category, presence: true
   validates :preptime_hour, presence: true
-  validates :preptime_hour, presence: true
   validates :preptime_mn, presence: true
   # validates :category, inclusion: { in: category.keys }
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
 
-  accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :recipe_ingredients
 end
