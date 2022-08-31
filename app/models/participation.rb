@@ -1,4 +1,4 @@
 class Participation < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   belongs_to :circle
 end
