@@ -5,7 +5,15 @@
         <%= f.input :photo, as: :file %>
         <%= f.input :name %>
         <%= f.input :category, collection: Recipe.categories.keys, include_blank: false %>
-        <%= f.input :prep_time %>
+        <div class="preptime">
+        <p> Prep time:</p>
+          <div class="preptime-input d-flex">
+            <%= f.input :preptime_hour, input_html: { min: 0 }, label: false %>
+            <p>h</p>
+            <%= f.input :preptime_mn, input_html: { min: 0, max: 60, step: 15 }, label: false %>
+            <p>mn</p>
+          </div>
+        </div>
         <%= f.input :description %>
         <%= f.submit %>
       <% end %>

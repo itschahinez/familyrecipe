@@ -20,6 +20,8 @@ eggplant_parmesan = Recipe.create!(
   Mix seasoned bread crumbs with Parmesan cheese in a bowl. Place 1/4 of the eggplant slices into a slow cooker and top with 1/4 of the crumbs, 1/4 of the marinara sauce, and 1/4 of the mozzarella cheese. Repeat layers three more times.',
   category: 1,
   creator_id: cyril.id,
+  preptime_hour: 5,
+  preptime_mn: 30,
   prep_time: 330
 )
 
@@ -46,6 +48,8 @@ chocolate_mousse = Recipe.create!(
   Refrigerate until set, 1 to 2 hours.',
   category: 2,
   creator_id: mercotte.id,
+  preptime_hour: 1,
+  preptime_mn: 15,
   prep_time: 75
 )
 
@@ -67,6 +71,8 @@ tzatziki = Recipe.create!(
   Pour into a serving dish, cover tightly, and refrigerate 8 hours before serving.',
   category: 0,
   creator_id: mercotte.id,
+  preptime_hour: 0,
+  preptime_mn: 15,
   prep_time: 15
 )
 
