@@ -1,14 +1,14 @@
 <%= content_for(:color) { 'navbar-orange' } %>
 
 <div class="main-container recipe-index-container">
-  <div>
-    <%= form_with url: recipes_path, method: :get, class: "d-flex rectangle" do %>
+  <div class="d-flex">
+    <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search" do |f| %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control search-design",
+        class: "form-control search-input-field",
         placeholder: "Search by name, ingredient..."
       %>
-      <%= submit_tag "Find a recipe" %>
+      <%= f.button '<i class="fa-solid fa-magnifying-glass"></i>'.html_safe, class: "search-bar-button" %>
     <% end %>
   </div>
 
