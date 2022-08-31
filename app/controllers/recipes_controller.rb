@@ -1,11 +1,12 @@
 class RecipesController < ApplicationController
   def index
     if params[:query].present?
-      # @all_recipes = []
+      @results = []
       my_recipes = current_user.recipes.global_search(params[:query])
-      # my_circles = current_user.circles.map { |circle| circle.recipes.global_search(params[:query]) }
-      # @all_recipes.push(my_recipes)
-      # @all_recipes.push(my_circles)
+      my_circles = current_user.circles.map { |circle| circle.recipes.global_search(params[:query]) }
+      @results.push(my_recipes)
+      @results.push(my_circles)
+      @results.flatten!.uniq!
     else
       @my_recipes = current_user.recipes
       @my_circles = current_user.circles
