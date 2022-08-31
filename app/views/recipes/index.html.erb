@@ -1,2 +1,50 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<%= content_for(:color) { 'navbar-orange' } %>
+
+<div class="main-container">
+  <% if @my_recipes.empty? && @my_circles.empty? %>
+    <p>You don't have any recipe yet!<p>
+    <p>Click here to add a new one:</p>
+    <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+  <% else %>
+    <% unless @my_recipes.empty? %>
+      <h2>From your recipes</h2>
+      <div class="cards">
+        <% @my_recipes.each do |recipe| %>
+          <ul class="recipe-list">
+            <li>
+              <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
+                <p><%= recipe.name %></p>
+                <p><%= recipe.preptime_hour > 0 ? "#{recipe.preptime_hour} h " : "" %><%= recipe.preptime_mn > 0 ? "#{recipe.preptime_mn} min" : "" %></p>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% unless @my_circles.empty? %>
+      <h2>From your circles</h2>
+      <% @my_circles.each do |circle| %>
+        <% if circle.recipes.empty? %>
+          <h3><%= circle.name %></h3>
+          <p>There are no recipes in this circle at the moment.<p>
+          <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
+        <% else %>
+          <h3><%= circle.name %></h3>
+          <div class="cards">
+          <% circle.recipes.each do |recipe| %>
+            <ul class="recipe-list">
+              <li>
+                <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
+                  <p><%= recipe.name %></p>
+                  <p><%= recipe.preptime_hour %></p>
+                </div>
+              </li>
+            </ul>
+          <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
   def index
+    @my_recipes = current_user.recipes
+    @my_circles = current_user.circles
   end
 
   def show
