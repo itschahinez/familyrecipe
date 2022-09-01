@@ -31,7 +31,6 @@ class RecipesController < ApplicationController
       @recipe.prep_time = (@recipe.preptime_hour * 60) + @recipe.preptime_mn
     end
     if @recipe.save
-      raise
       redirect_to recipe_path(@recipe)
     else
       render "recipes/new", status: :unprocessable_entity

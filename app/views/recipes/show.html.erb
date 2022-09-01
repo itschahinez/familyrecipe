@@ -2,7 +2,11 @@
 
 
 <div class="banner">
-  <img class="img-banner" src="<%= @recipe.photo.nil? ? @recipe.photo : 'https://source.unsplash.com/random/?food' %>" alt="image">
+  <% if @recipe.photo.attached?%>
+          <%= cl_image_tag @recipe.photo&.key, class:"img-banner"%>
+        <% else %>
+          <img class='img-banner' alt='img-banner' src='https://source.unsplash.com/random/?food'/>
+        <% end %>
 </div>
 
 
