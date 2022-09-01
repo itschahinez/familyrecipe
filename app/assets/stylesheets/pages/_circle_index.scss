@@ -1,0 +1,32 @@
+.circle-infos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.your-circle h1 {
+  color: $primary-color;
+}
+
+.add-button {
+  .fa-solid {
+    color: $primary-color;
+  }
+}
+
+.little-container {
+  background-color: $rectangle-color;
+  height: 200px;
+  margin-top: 15px;
+  padding: 15px 25px 15px 15px;
+}
+
+.icon ul li {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.icon {
+  .fa-solid {
+    color: $primary-color;
+  }
+}

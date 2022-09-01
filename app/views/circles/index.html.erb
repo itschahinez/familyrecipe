@@ -1,1 +1,36 @@
-Coucou c'est l'index de circle
+<div class="main-container">
+  <div class="your-circle">
+    <h1>Your Circle</h1>
+  </div>
+  <% @circles.each do |circle| %>
+    <div class="little-container">
+      <div class="d-flex justify-content-between mb-2">
+        <div class="circle-name">
+          <h2><%= circle.name %></h2>
+          <p>Number of recipes : <%= circle.recipes.count %></p>
+        </div>
+
+        <div class="icon">
+          <ul>
+            <li><i class="fa-solid fa-pen-to-square fa-lg"></i></li>
+            <li><i class="fa-solid fa-trash-can fa-lg"></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="member-infos">
+        <p>Member</p>
+          <% circle.users.each do |member| %>
+            <% if member %>
+              <%= cl_image_tag member.photo&.key, class:"avatar"%>
+            <% else %>
+              <img class=“avatar” alt=“avatar” src=“https://kitt.lewagon.com/placeholder/users/cveneziani” />
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+
+    <div class="d-flex justify-content-center align-self-end mt-5">
+      <div class="button-green">Create New Circle</div>
+    </div>
+</div>

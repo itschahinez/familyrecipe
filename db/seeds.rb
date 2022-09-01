@@ -1,7 +1,9 @@
+require "open-uri"
+
 Recipe.destroy_all
 User.destroy_all
 Ingredient.destroy_all
-RecipeIngredient.destroy_all
+Circle.destroy_all
 
 puts "Creating seeds"
 
@@ -10,6 +12,13 @@ puts "Creating users"
 cyril = User.create!(first_name: "Cyril", email: "cyril@gourmand.fr", password: 'secret')
 mercotte = User.create!(first_name: "Mercotte", email: "mercotte@gourmand.fr", password: 'secret')
 jojo = User.create!(first_name: "Jonathan", email: "jonathan@coco.fr", password: 'secret')
+
+cyril_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/cld-sample.jpg")
+cyril.photo.attach(io: cyril_picture, filename: "Mat.jpg", content_type: "image/jpg")
+mercotte_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+mercotte.photo.attach(io: mercotte_picture, filename: "Oliv.jpg", content_type: "image/jpg")
+jojo_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+jojo.photo.attach(io: jojo_picture, filename: "Cha.jpg", content_type: "image/jpg")
 
 puts "Users done"
 
@@ -24,6 +33,9 @@ eggplant_parmesan = Recipe.create!(
   preptime_mn: 30,
   prep_time: 330
 )
+
+eggplant_parmesan_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034344/y5ddvhjnphh44c1vthsv.jpg")
+eggplant_parmesan.photo.attach(io: eggplant_parmesan_picture, filename: "eggplant_parmesan.jpg", content_type: "image/jpg")
 
 puts "eggplant recipe created"
 
@@ -53,6 +65,9 @@ chocolate_mousse = Recipe.create!(
   prep_time: 75
 )
 
+chocolate_mousse_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034414/bzbynyybfww5llmwe5mw.jpg")
+chocolate_mousse.photo.attach(io: chocolate_mousse_picture, filename: "chocolate_mousse.jpg", content_type: "image/jpg")
+
 mascarpone = Ingredient.create!(name: 'mascarpone', unit: 'gr')
 whipping_cream = Ingredient.create!(name: 'whipping cream', unit: 'ml')
 vanilla = Ingredient.create!(name: 'vanilla extract', unit: 'tsp')
@@ -76,6 +91,9 @@ tzatziki = Recipe.create!(
   prep_time: 15
 )
 
+tzatziki_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034849/rwm2aeciktrdmh3s7wuy.jpg")
+tzatziki.photo.attach(io: tzatziki_picture, filename: "tzatziki.jpg", content_type: "image/jpg")
+
 cucumber = Ingredient.create!(name: 'cucumber', unit: '')
 yoghurt = Ingredient.create!(name: 'yoghurt', unit: 'ml')
 garlic = Ingredient.create!(name: 'garlic', unit: 'clove')
@@ -87,6 +105,31 @@ RecipeIngredient.create!(ingredient: garlic, recipe: tzatziki, quantity: 2)
 RecipeIngredient.create!(ingredient: olive_oil, recipe: tzatziki, quantity: 3)
 
 puts "Tzatziki done"
+
+eggplant_pasta = Recipe.create!(
+  name: 'Eggplant Pasta',
+  description: '1. Heat 1 tablespoon oil in a skillet over medium heat. Add pancetta; cook until browned on the edges, about 5 minutes. Add eggplant and remaining 2 tablespoons olive oil; cook until eggplant is slightly softened, about 5 minutes.<br>
+  2. Pour marinara sauce, tomatoes, and wine into the skillet. Add red pepper flakes, black pepper, garlic salt, sugar, and white pepper. Stir and cover. Let sauce simmer until flavors combine, about 20 minutes.<br>
+  3. Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain; mix with the sauce.',
+  category: 1,
+  creator_id: cyril.id,
+  preptime_hour: 5,
+  preptime_mn: 30,
+  prep_time: 330
+)
+
+eggplant_pasta_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sflkslsezu2a9tun3ozu.jpg")
+eggplant_pasta.photo.attach(io: eggplant_pasta_picture, filename: "eggplant_pasta.jpg", content_type: "image/jpg")
+
+red_pepper = Ingredient.create!(name: 'red pepper', unit: '')
+penne = Ingredient.create!(name: 'penne', unit: 'gr')
+
+RecipeIngredient.create!(ingredient: tomato, recipe: eggplant_pasta, quantity: 2)
+RecipeIngredient.create!(ingredient: red_pepper, recipe: eggplant_pasta, quantity: 2)
+RecipeIngredient.create!(ingredient: eggplant, recipe: eggplant_pasta, quantity: 1)
+RecipeIngredient.create!(ingredient: penne, recipe: eggplant_pasta, quantity: 250)
+
+puts "Eggplant pasta done"
 
 butter = Ingredient.create!(name: 'butter', unit: 'gr')
 flour = Ingredient.create!(name: 'flour', unit: 'gr')
@@ -107,6 +150,7 @@ Participation.create!(circle: circle2, user: mercotte)
 puts "created participations"
 
 CircleRecipe.create!(circle: circle1, recipe: eggplant_parmesan)
+CircleRecipe.create!(circle: circle1, recipe: eggplant_pasta)
 CircleRecipe.create!(circle: circle1, recipe: chocolate_mousse)
 CircleRecipe.create!(circle: circle1, recipe: tzatziki)
 CircleRecipe.create!(circle: circle2, recipe: eggplant_parmesan)
