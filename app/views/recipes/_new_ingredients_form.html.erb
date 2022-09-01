@@ -1,5 +1,5 @@
 <div class="nested-form-wrapper d-flex" data-new-record="<%= ri.object.new_record? %>">
-  <%= ri.input :quantity %>
+  <%= ri.input :quantity, as: :numeric,  input_html: { min: 0 } %>
   <%= ri.association :ingredient, collection: Ingredient.all, label_method: :name_and_unit %>
 
   <button type="button" data-action="nested-form#remove">Remove ingredient</button>

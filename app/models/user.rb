@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :circles, through: :participations
   has_many :comments
+  has_one_attached :photo
 
   validates :first_name, length: { maximum: 15 }
 end

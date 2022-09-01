@@ -20,15 +20,15 @@
           <p>Add an ingredient</p>
             <template data-nested-form-target="template">
             <div class="ingredients-input d-flex">
-              <%= f.fields_for :recipe_ingredients do |ri| %>
+              <%= f.fields_for :recipe_ingredients, child_index: 'NEW_RECORD' do |ri| %>
                 <%= render "new_ingredients_form", ri: ri %>
               <% end %>
             </div>
           </template>
 
-        <div class="ingredients-input d-flex">
+        <div class="ingredients-input">
           <%= f.fields_for :recipe_ingredients do |ri| %>
-          <%= render "new_ingredients_form", ri: ri %>
+            <%= render "new_ingredients_form", ri: ri %>
           <% end %>
         </div>
 
