@@ -113,9 +113,9 @@ eggplant_pasta = Recipe.create!(
   3. Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain; mix with the sauce.',
   category: 1,
   creator_id: cyril.id,
-  preptime_hour: 5,
-  preptime_mn: 30,
-  prep_time: 330
+  preptime_hour: 0,
+  preptime_mn: 45,
+  prep_time: 45
 )
 
 eggplant_pasta_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sflkslsezu2a9tun3ozu.jpg")
