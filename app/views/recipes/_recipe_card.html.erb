@@ -1,0 +1,12 @@
+<ul class="recipe-list">
+  <li>
+    <div class="card-category", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
+      <div class="recipe-card-text">
+        <%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %>
+        <div class="recipe-card-duration">
+          <i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
