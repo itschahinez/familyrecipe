@@ -27,3 +27,12 @@ $border-radius-sm: 2px;
 $primary-color: #FC913A;
 $second-color: #6A994E;
 $rectangle-color: #FFF7ED;
+
+.form-control {
+  height: 52px;
+  // width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $second-color;
+}
