@@ -13,6 +13,12 @@ cyril = User.create!(first_name: "Cyril", email: "cyril@gourmand.fr", password: 
 mercotte = User.create!(first_name: "Mercotte", email: "mercotte@gourmand.fr", password: 'secret')
 jojo = User.create!(first_name: "Jonathan", email: "jonathan@coco.fr", password: 'secret')
 
+cyril_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/cld-sample.jpg")
+cyril.photo.attach(io: cyril_picture, filename: "Mat.jpg", content_type: "image/jpg")
+mercotte_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+mercotte.photo.attach(io: mercotte_picture, filename: "Oliv.jpg", content_type: "image/jpg")
+jojo_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+jojo.photo.attach(io: jojo_picture, filename: "Cha.jpg", content_type: "image/jpg")
 
 puts "Users done"
 
@@ -25,9 +31,11 @@ eggplant_parmesan = Recipe.create!(
   creator_id: cyril.id,
   preptime_hour: 5,
   preptime_mn: 30,
-  prep_time: 330,
-  photo: open("http://res.cloudinary.com/chahinezh/image/upload/v1662027214/sflkslsezu2a9tun3ozu.jpg")
+  prep_time: 330
 )
+
+eggplant_parmesan_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034344/y5ddvhjnphh44c1vthsv.jpg")
+eggplant_parmesan.photo.attach(io: eggplant_parmesan_picture, filename: "eggplant_parmesan.jpg", content_type: "image/jpg")
 
 puts "eggplant recipe created"
 
@@ -57,6 +65,9 @@ chocolate_mousse = Recipe.create!(
   prep_time: 75
 )
 
+chocolate_mousse_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034414/bzbynyybfww5llmwe5mw.jpg")
+chocolate_mousse.photo.attach(io: chocolate_mousse_picture, filename: "chocolate_mousse.jpg", content_type: "image/jpg")
+
 mascarpone = Ingredient.create!(name: 'mascarpone', unit: 'gr')
 whipping_cream = Ingredient.create!(name: 'whipping cream', unit: 'ml')
 vanilla = Ingredient.create!(name: 'vanilla extract', unit: 'tsp')
@@ -79,6 +90,9 @@ tzatziki = Recipe.create!(
   preptime_mn: 15,
   prep_time: 15
 )
+
+tzatziki_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034849/rwm2aeciktrdmh3s7wuy.jpg")
+tzatziki.photo.attach(io: tzatziki_picture, filename: "tzatziki.jpg", content_type: "image/jpg")
 
 cucumber = Ingredient.create!(name: 'cucumber', unit: '')
 yoghurt = Ingredient.create!(name: 'yoghurt', unit: 'ml')
@@ -103,6 +117,9 @@ eggplant_pasta = Recipe.create!(
   preptime_mn: 30,
   prep_time: 330
 )
+
+eggplant_pasta_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sflkslsezu2a9tun3ozu.jpg")
+eggplant_pasta.photo.attach(io: eggplant_pasta_picture, filename: "eggplant_pasta.jpg", content_type: "image/jpg")
 
 red_pepper = Ingredient.create!(name: 'red pepper', unit: '')
 penne = Ingredient.create!(name: 'penne', unit: 'gr')
