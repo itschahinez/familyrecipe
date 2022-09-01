@@ -33,31 +33,57 @@
           </div>
         </div>
 
-        <div class="ingredients">
-          <p>Add an ingredient</p>
-            <template data-nested-form-target="template">
-            <div class="ingredients-input d-flex">
-              <%= f.fields_for :recipe_ingredients, child_index: 'NEW_RECORD' do |ri| %>
-                <%= render "new_ingredients_form", ri: ri %>
-              <% end %>
+      <div class="categories-preptime" >
+      <h4>Category and prep time</h4>
+        <div class="preptime-input d-flex row">
+          <div class="col-6">
+            <%= f.input :category, collection: Recipe.categories.keys, include_blank: false, label: false %>
+          </div>
+          <div class="col-6">
+            <div class="row preptime-fields">
+              <div class="col-5">
+                <%= f.input :preptime_hour, as: :numeric,  input_html: { min: 0 }, label: false %>
+              </div>
+                <div class="col-2">
+                <p id="time-hour">  h  </p>
+              </div>
+              <div class="col-5">
+                  <%= f.input :preptime_mn, as: :numeric, input_html: { min: 0, max: 45, step: 15 }, label: false %>
+              </div>
             </div>
-          </template>
-
-        <div class="ingredients-input">
-          <%= f.fields_for :recipe_ingredients do |ri| %>
-            <%= render "new_ingredients_form", ri: ri %>
-          <% end %>
+          </div>
         </div>
-
-        <div data-nested-form-target="target">
       </div>
 
-      <button type="button" data-action="nested-form#add">Add ingredient</button>
-        <%= f.input :description %>
-        <%= f.submit %>
+      <div class="ingrediente" >
+        <h4>Ingredients</h4>
+          <template data-nested-form-target="template">
+          <div class="ingredients-input d-flex">
+            <%= f.fields_for :recipe_ingredients, child_index: 'NEW_RECORD' do |ri| %>
+              <%= render "new_ingredients_form", ri: ri %>
+            <% end %>
+          </div>
+        </template>
+
+      <div class="ingredients-input">
+        <%= f.fields_for :recipe_ingredients do |ri| %>
+          <%= render "new_ingredients_form", ri: ri %>
+        <% end %>
+      </div>
+
+      <div data-nested-form-target="target">
+
+</div>
+    <button type="button" data-action="nested-form#add" class="button-orange w-100 b-0 ml-0"><i class="fa-solid fa-plus"></i></button>
+    <div class="d-flex">
+    <h4>Recipe instructions</h4>
+    </div>
+      <%= f.input :description, class: "search-input-field shadow-none background description", label: false %>
+    <div class="b-0 my-4 mr-0 d-flex justify-content-center">
+      <%= f.submit class: "button-green " %>
+    </div>
     <% end %>
   </div>
-</div>
 
 <%# :input_html => {:onChange => 'upload();'} %>
  <%# data-controller="insert-recipe-image" %>
