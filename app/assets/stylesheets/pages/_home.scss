@@ -1,1 +1,34 @@
 // Specific CSS for your home-page
+.homepage-img {
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
+  width: 100%;
+  height: 812px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  position: fixed;
+}
+
+.homepage-content {
+  margin: auto 0 30px 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  h1 {
+    color: white;
+    margin-top: 50%;
+    width: 330px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .button-orange {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.container-homepage {
+  margin-top: 30px;
+}
