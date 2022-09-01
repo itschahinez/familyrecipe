@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Create a new recipe</h1>
     <div class="form">
-      <%= simple_form_for(@recipe) do |f| %>
+      <%= simple_form_for @recipe, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
         <%= f.input :photo, as: :file %>
         <%= f.input :name %>
         <%= f.input :category, collection: Recipe.categories.keys, include_blank: false %>
@@ -18,18 +18,28 @@
 
         <div class="ingredients">
           <p>Add an ingredient</p>
-          <div class="ingredients-input d-flex">
-            <%= f.fields_for :recipe_ingredients do |ri| %>
-              <%= ri.input :quantity %>
-              <%= ri.association :ingredient, collection: Ingredient.all, label_method: :name_and_unit %>
-            <% end %>
-          </div>
+            <template data-nested-form-target="template">
+            <div class="ingredients-input d-flex">
+              <%= f.fields_for :recipe_ingredients do |ri| %>
+                <%= render "new_ingredients_form", ri: ri %>
+              <% end %>
+            </div>
+          </template>
+
+        <div class="ingredients-input d-flex">
+          <%= f.fields_for :recipe_ingredients do |ri| %>
+          <%= render "new_ingredients_form", ri: ri %>
+          <% end %>
         </div>
 
+        <div data-nested-form-target="target">
+      </div>
+
+      <button type="button" data-action="nested-form#add">Add ingredient</button>
         <%= f.input :description %>
         <%= f.submit %>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 </div>
 
 <%# :input_html => {:onChange => 'upload();'} %>

@@ -20,6 +20,8 @@ class Recipe < ApplicationRecord
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
 
+
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
   enum category: { entree: 0, main: 1, dessert: 2 }
 
   accepts_nested_attributes_for :recipe_ingredients
