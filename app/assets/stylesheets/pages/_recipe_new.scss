@@ -1,0 +1,116 @@
+h1 {
+  color: $primary-color;
+}
+
+h4         {
+  margin-top: 30px;
+}
+
+
+// To style the inputs
+
+#recipe_name, #recipe_category, #recipe_recipe_ingredients_attributes_0_quantity, #recipe_recipe_ingredients_attributes_0_ingredient_id {
+  height: 52px;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $second-color;
+  text-transform: capitalize;
+  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25);
+}
+#recipe_recipe_ingredients_attributes_0_quantity {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 100px;
+}
+
+#recipe_recipe_ingredients_attributes_0_ingredient_id {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 1px solid $second-color;
+}
+
+#recipe_photo {
+  // width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $second-color;
+  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25);
+}
+
+#recipe_preptime_hour, #recipe_preptime_mn {
+  height: 52px;
+  width: 60px;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $second-color;
+  text-transform: capitalize;
+  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.categories-preptime {
+  align-items: flex-end;
+}
+
+.preptime-fields {
+  align-items: flex-end;
+}
+
+// To style the h between h and minutes inputs
+#time-hour{
+  text-align: center;
+  justify-content: center;
+  font-size: larger;
+}
+
+// Banner:
+.banner {
+  margin-top: 65px;
+}
+
+.main-container {
+  margin-top: 30px;
+  background-color: rgb(228, 228, 228);
+}
+
+// Add and delete ingredients
+
+.cross-delete {
+  border: none;
+  color: $second-color;
+  font-weight: bold;
+  padding-left: 12px;
+  padding-right: 0px;
+  padding-bottom: 12px;
+  font-size: x-large;
+  background-color: transparent;
+}
+
+.plus-mark {
+  background-color: transparent;
+  border: none;
+  color: $second-color;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+// add description
+.description {
+  background-color: #fff7ed;
+  width: 100%;
+}
+
+#recipe_description {
+  background-color: #fff7ed;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+}
+
+body {
+}
