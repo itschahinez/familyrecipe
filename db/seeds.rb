@@ -1,3 +1,5 @@
+require "open-uri"
+
 Recipe.destroy_all
 User.destroy_all
 Ingredient.destroy_all
@@ -10,6 +12,7 @@ puts "Creating users"
 cyril = User.create!(first_name: "Cyril", email: "cyril@gourmand.fr", password: 'secret')
 mercotte = User.create!(first_name: "Mercotte", email: "mercotte@gourmand.fr", password: 'secret')
 jojo = User.create!(first_name: "Jonathan", email: "jonathan@coco.fr", password: 'secret')
+
 
 puts "Users done"
 

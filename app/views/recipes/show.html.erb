@@ -13,7 +13,11 @@
 
   <div class="creator-infos">
     <p>Creator</p>
-      <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
+      <% if @recipe.creator&.photo&.attached?%>
+        <%= cl_image_tag @recipe.creator&.photo&.key, class:"avatar"%>
+      <% else %>
+        <img class=“avatar” alt=“avatar” src=“https://kitt.lewagon.com/placeholder/users/cveneziani” />
+      <% end %>
   </div>
 </div>
 
@@ -24,8 +28,8 @@
     <div class="ingredient">
       <h3>Ingredients</h3>
       <ul>
-      <% @recipe.ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient.name} #{ingredient.unit}"  %></li>
+      <% @recipe.recipe_ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.name}"  %></li>
       <% end %>
       </ul>
     </div>
