@@ -1,68 +1,46 @@
-<%= content_for(:color) { 'navbar-white'} %>
-<div class="banner">
-  <img class="img-banner" src="https://source.unsplash.com/random/?cutlery" alt="image">
-</div>
+<div class="container">
+    <h1>Create a new recipe</h1>
+    <div class="form">
+      <%= simple_form_for @recipe, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+        <%= f.input :photo, as: :file %>
+        <%= f.input :name %>
+        <%= f.input :category, collection: Recipe.categories.keys, include_blank: false %>
 
-<div class="main-container">
-  <h1>Create a new recipe</h1>
-  <div class="form">
-    <%= simple_form_for @recipe, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
-    <h4>Picture</h4>
-      <%= f.input :photo, as: :file, label: false %>
-    <h4>What's the name of your recipe?</h4>
-      <%= f.input :name, class: "search-input-field", label: false %>
-
-      <div class="categories-preptime" >
-      <h4>Category and prep time</h4>
-        <div class="preptime-input d-flex row">
-          <div class="col-6">
-            <%= f.input :category, class: "search-input-field", collection: Recipe.categories.keys, include_blank: false, label: false %>
-          </div>
-          <div class="col-6">
-            <div class="row preptime-fields">
-              <div class="col-5">
-                <%= f.input :preptime_hour, class: "search-input-field", as: :numeric,  input_html: { min: 0 }, label: false %>
-              </div>
-                <div class="col-2">
-                <p id="time-hour">  h  </p>
-              </div>
-              <div class="col-5">
-                  <%= f.input :preptime_mn, class: "search-input-field", as: :numeric, input_html: { min: 0, max: 60, step: 15 }, label: false %>
-              </div>
-            </div>
+        <div class="preptime">
+        <p> Prep time:</p>
+          <div class="preptime-input d-flex">
+            <%= f.input :preptime_hour, as: :numeric,  input_html: { min: 0 }, label: false %>
+            <p>h</p>
+            <%= f.input :preptime_mn, as: :numeric, input_html: { min: 0, max: 60, step: 15 }, label: false %>
+            <p>mn</p>
           </div>
         </div>
+
+        <div class="ingredients">
+          <p>Add an ingredient</p>
+            <template data-nested-form-target="template">
+            <div class="ingredients-input d-flex">
+              <%= f.fields_for :recipe_ingredients, child_index: 'NEW_RECORD' do |ri| %>
+                <%= render "new_ingredients_form", ri: ri %>
+              <% end %>
+            </div>
+          </template>
+
+        <div class="ingredients-input">
+          <%= f.fields_for :recipe_ingredients do |ri| %>
+            <%= render "new_ingredients_form", ri: ri %>
+          <% end %>
+        </div>
+
+        <div data-nested-form-target="target">
       </div>
 
-      <div class="ingrediente" >
-        <h4>Ingredients</h4>
-          <template data-nested-form-target="template">
-          <div class="ingredients-input d-flex">
-            <%= f.fields_for :recipe_ingredients, child_index: 'NEW_RECORD' do |ri| %>
-              <%= render "new_ingredients_form", ri: ri %>
-            <% end %>
-          </div>
-        </template>
-
-      <div class="ingredients-input">
-        <%= f.fields_for :recipe_ingredients do |ri| %>
-          <%= render "new_ingredients_form", ri: ri %>
-        <% end %>
-      </div>
-
-      <div data-nested-form-target="target">
-
-</div>
-    <button type="button" data-action="nested-form#add" class="button-orange w-100 b-0 ml-0"><i class="fa-solid fa-plus"></i></button>
-    <div class="d-flex">
-    <h4>Recipe instructions</h4>
-    </div>
-      <%= f.input :description, class: "search-input-field shadow-none background description", label: false %>
-    <div class="b-0 my-4 mr-0 d-flex justify-content-center">
-      <%= f.submit class: "button-green " %>
-    </div>
+      <button type="button" data-action="nested-form#add">Add ingredient</button>
+        <%= f.input :description %>
+        <%= f.submit %>
     <% end %>
   </div>
+</div>
 
 <%# :input_html => {:onChange => 'upload();'} %>
  <%# data-controller="insert-recipe-image" %>
