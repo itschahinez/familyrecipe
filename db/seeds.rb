@@ -1,6 +1,3 @@
-RecipeIngredient.destroy_all
-Participation.destroy_all
-CircleRecipe.destroy_all
 Recipe.destroy_all
 User.destroy_all
 Ingredient.destroy_all
@@ -25,7 +22,8 @@ eggplant_parmesan = Recipe.create!(
   creator_id: cyril.id,
   preptime_hour: 5,
   preptime_mn: 30,
-  prep_time: 330
+  prep_time: 330,
+  photo: open("http://res.cloudinary.com/chahinezh/image/upload/v1662027214/sflkslsezu2a9tun3ozu.jpg")
 )
 
 puts "eggplant recipe created"

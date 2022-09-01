@@ -4,9 +4,9 @@ class Recipe < ApplicationRecord
   has_one_attached :photo
 
   belongs_to :creator, foreign_key: :creator_id, class_name: 'User'
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-  has_many :circle_recipes
+  has_many :circle_recipes, dependent: :destroy
   has_many :circles, through: :circle_recipes
   has_many :comments
   has_many :users, through: :comments
