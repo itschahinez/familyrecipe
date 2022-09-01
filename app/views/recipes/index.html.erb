@@ -3,7 +3,7 @@
 </div>
 
 <div class="main-container recipe-index-container">
-  <div class="d-flex recipe-search-container">
+  <div class="d-flex recipe-search-container <%= "d-none" if @my_recipes.empty? && @my_circles.empty? %>">
     <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search" do |f| %>
       <%= text_field_tag :query,
         params[:query],
@@ -20,7 +20,15 @@
     </div>
   </div>
 
-  <% if params[:query].present? %>
+  <% if @my_recipes.empty? && @my_circles.empty? %>
+    <div class="no-recipes">
+      <h3>You don't have any recipe yet!</h3>
+      <img id="no-recipes-image" src="https://images.unsplash.com/photo-1517870662726-c1d98ee36250?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="empty plate">
+      <div class="write-recipe-button">
+        <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+      </div>
+    </div>
+  <% elsif params[:query].present? %>
     <h2>Search results</h2>
     <% if @results.empty? %>
       <p>There are no recipes matching your search.</p>
@@ -30,13 +38,7 @@
           <%= render "recipe_card", recipe: recipe %>
         <% end %>
       </div>
-      <% end %>
-  <% elsif @my_recipes.empty? && @my_circles.empty? %>
-    <div class="no-recipes">
-      <p>You don't have any recipe yet!<p>
-      <p>Click here to add a new one:</p>
-      <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
-    </div>
+    <% end %>
   <% else %>
     <% unless @my_recipes.empty? %>
       <h2>From your recipes</h2>
@@ -53,7 +55,7 @@
         <% if circle.recipes.empty? %>
           <h3><%= circle.name %></h3>
           <div class="no-recipes">
-            <p>There are no recipes in this circle<br>at the moment.<p>
+            <p>There are no recipes in this circle<br>at the moment.</p>
             <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
           </div>
         <% else %>

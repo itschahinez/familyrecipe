@@ -4,7 +4,7 @@
       <div class="recipe-card-text">
         <%= link_to recipe.name, recipe_path(recipe), class: "recipe-link" %>
         <div class="recipe-card-duration">
-          <i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></p>
+          <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
         </div>
       </div>
     </div>
