@@ -1,11 +1,13 @@
 .recipe-index-container {
-  h2, h3 {
-    color: $primary-color;
-  }
-
   h2 {
+    color: $primary-color;
     text-decoration: underline;
     margin-top: 20px;
+  }
+
+  h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
   }
 }
 
@@ -28,15 +30,15 @@
   position: relative;
 
   .fa-solid {
-    font-size: 20px;
+    font-size: 30px;
     color: $primary-color;
   }
 
   .fa-plus {
     position: absolute;
-    top: -3px;
-    right: -5px;
-    font-size: 10px;
+    top: -8px;
+    right: -8px;
+    font-size: 20px;
   }
 }
 
