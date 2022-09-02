@@ -1,0 +1,26 @@
+<%= content_for(:color) { 'navbar-white'} %>
+
+<img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="Cooking with friends" class="friends-banner">
+<div class="container-circle">
+  <h1 id="title-circle">Create your circle</h1>
+  <%= simple_form_for @circle, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
+    <div></div>
+    <%= f.input :name, input_html: {class: 'modify-input'}, label_html: {class: 'modify-label'} %>
+    <template data-nested-form-target="template">
+    <%= f.simple_fields_for :participations, child_index: 'NEW_RECORD' do |p_fields| %>
+      <%= render "circle_form", f: p_fields %>
+    <% end %>
+    </template>
+
+    <%= f.simple_fields_for :participations do |p_fields| %>
+      <%= render "circle_form", f: p_fields %>
+    <% end %>
+
+   <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add" class="modify-button"><i class="fa-solid fa-user-plus fa-lg icon-color"></i></button>
+    <div class="center-button">
+      <%= f.submit "Create your circle", class: 'button-green' %>
+    </div>
+  <% end %>
+</div>

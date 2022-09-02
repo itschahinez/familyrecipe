@@ -1,0 +1,9 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="d-flex justify-content-between">
+  <%= f.association :user, collection: @other_users, label_method: lambda { |user| "#{user.first_name}"}, class: 'user-input' %>
+
+  <button type="button" data-action="nested-form#remove" class="modify-button"><i class="fa-solid fa-trash-can fa-xl icon-color"></i></button>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+</div>
