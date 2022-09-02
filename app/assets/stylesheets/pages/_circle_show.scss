@@ -2,6 +2,18 @@
   text-decoration: underline;
 }
 
+.circle-name-add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.circle-add-member {
+  .fa-solid {
+    color: $primary-color;
+  }
+}
+
 .circle-member-container {
   background-color: $rectangle-color;
   height: 140px;
@@ -30,7 +42,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 
 .recipe-circle-name h2 {
   margin-top: 25px;
