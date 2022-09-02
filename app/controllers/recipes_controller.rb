@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
       my_circles = current_user.circles.map { |circle| circle.recipes.global_search(params[:query]) }
       @results.push(my_recipes)
       @results.push(my_circles)
-      @results.flatten!.uniq!.sort_by(&:name)
+      @results.flatten!.uniq!
     else
       @my_recipes = current_user.recipes.sort_by(&:name)
       @my_circles = current_user.circles.sort_by(&:name)
