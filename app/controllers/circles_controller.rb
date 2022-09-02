@@ -4,6 +4,7 @@ class CirclesController < ApplicationController
   end
 
   def show
+    @circle = Circle.find(params[:id])
   end
 
   def new
