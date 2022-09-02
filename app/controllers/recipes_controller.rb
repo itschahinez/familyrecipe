@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @circle_recipe = CircleRecipe.new
   end
 
   def new
@@ -56,7 +57,7 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(
       :name, :description, :category, :prep_time, :preptime_hour, :preptime_mn, :photo,
-      recipe_ingredients_attributes: [:quantity, :id, :ingredient_id, :_destroy]
+      recipe_ingredients_attributes: [:quantity, :id, :ingredient_id, :_destroy],
     )
   end
 end

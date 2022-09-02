@@ -75,3 +75,14 @@
   </div>
 
 </div>
+
+<div class="main-container my-4 mx-5">
+  <h3>Add to a group</h3>
+    <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
+      <%= cr.hidden_field :recipe_id, value: @recipe.id %>
+      <%= cr.association :circle, collection: current_user.circles, label: false, input_html: {class: "search-input-field"} %>
+      <div class="d-flex justify-content-center my-3">
+        <%= cr.submit "Add to group", class: 'button-green' %>
+      </div>
+    <% end %>
+</div>

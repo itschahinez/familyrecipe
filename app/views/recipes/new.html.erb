@@ -1,9 +1,9 @@
 <%= content_for(:color) { 'navbar-white'} %>
-<div class="banner">
+<div class="banner mt-0 mb-0">
   <img class="img-banner" src="https://source.unsplash.com/random/?cutlery" alt="image">
 </div>
 
-<div class="main-container">
+<div class="main-container m-4">
   <h1>Create a new recipe</h1>
   <div class="form">
     <%= simple_form_for @recipe, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
@@ -58,9 +58,12 @@
     </div>
       <%= f.input :description, class: "search-input-field shadow-none background description", label: false %>
     <div class="b-0 my-4 mr-0 d-flex justify-content-center">
+
       <%= f.submit class: "button-green " %>
     </div>
     <% end %>
+
+
   </div>
 
 <%# :input_html => {:onChange => 'upload();'} %>
