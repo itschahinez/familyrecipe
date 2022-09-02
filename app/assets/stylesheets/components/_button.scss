@@ -10,7 +10,6 @@
   border: 0;
 }
 
-
 .button-orange {
   background-color: $primary-color;
   color: white;
@@ -20,4 +19,13 @@
   height: 52px;
   width: 218px;
   border: 0;
+}
+
+.write-recipe-button {
+  margin-top: 20px;
+}
+
+#inspiration-button {
+  text-align: center;
+  margin-bottom: 40px;
 }

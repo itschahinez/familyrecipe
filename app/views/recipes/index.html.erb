@@ -1,7 +1,9 @@
-<%= content_for(:color) { 'navbar-orange' } %>
+<%#= content_for(:color) { 'navbar-orange' } %>
+<div class="test">
+</div>
 
 <div class="main-container recipe-index-container">
-  <div class="d-flex">
+  <div class="d-flex recipe-search-container <%= "d-none" if @my_recipes.nil? && @my_circles.nil? %>">
     <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search" do |f| %>
       <%= text_field_tag :query,
         params[:query],
@@ -10,9 +12,23 @@
       %>
       <%= f.button '<i class="fa-solid fa-magnifying-glass"></i>'.html_safe, class: "search-bar-button" %>
     <% end %>
+    <div class="cookie-icon">
+      <%= link_to new_recipe_path  do %>
+        <i class="fa-solid fa-cookie-bite"></i>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+    </div>
   </div>
 
-  <% if params[:query].present? %>
+  <% if @my_recipes.empty? && @my_circles.empty? %>
+    <div class="no-recipes">
+      <h3>You don't have any recipe yet!</h3>
+      <img id="no-recipes-image" src="https://res.cloudinary.com/chahinezh/image/upload/v1662067855/faxt2ojk55dmyxq0sfou.jpg" alt="empty plate">
+      <div class="write-recipe-button">
+        <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+      </div>
+    </div>
+  <% elsif params[:query].present? %>
     <h2>Search results</h2>
     <% if @results.empty? %>
       <p>There are no recipes matching your search.</p>
@@ -22,11 +38,7 @@
           <%= render "recipe_card", recipe: recipe %>
         <% end %>
       </div>
-      <% end %>
-  <% elsif @my_recipes.empty? && @my_circles.empty? %>
-      <p>You don't have any recipe yet!<p>
-      <p>Click here to add a new one:</p>
-      <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+    <% end %>
   <% else %>
     <% unless @my_recipes.empty? %>
       <h2>From your recipes</h2>
@@ -42,12 +54,14 @@
       <% @my_circles.each do |circle| %>
         <% if circle.recipes.empty? %>
           <h3><%= circle.name %></h3>
-          <p>There are no recipes in this circle at the moment.<p>
-          <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
+          <div class="no-recipes">
+            <p>There are no recipes in this circle<br>at the moment.</p>
+            <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
+          </div>
         <% else %>
           <h3><%= circle.name %></h3>
           <div class="cards">
-          <% circle.recipes.each do |recipe| %>
+          <% circle.recipes.sort_by(&:name).each do |recipe| %>
             <%= render "recipe_card", recipe: recipe %>
           <% end %>
           </div>
@@ -55,4 +69,7 @@
       <% end %>
     <% end %>
   <% end %>
+  <div id="inspiration-button">
+    <%= link_to "Find inspiration", suggestions_path, class: "button-green" %>
+  </div>
 </div>

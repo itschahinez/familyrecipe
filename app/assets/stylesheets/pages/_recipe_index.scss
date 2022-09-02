@@ -23,12 +23,35 @@
   color: $primary-color;
 }
 
-.recipe-card-text {
-  padding: 5px;
-  text-align: center;
+.cookie-icon {
+  display: inline-block;
+  position: relative;
+
+  .fa-solid {
+    font-size: 20px;
+    color: $primary-color;
+  }
+
+  .fa-plus {
+    position: absolute;
+    top: -3px;
+    right: -5px;
+    font-size: 10px;
+  }
 }
 
-.recipe-card-duration {
-  font-size: 20px;
-  margin-top: 5px;
+.no-recipes {
+  margin: 20px 0 35px 0;
+  text-align: center;
+
+  p {
+    font-size: 20px;
+  }
+}
+
+#no-recipes-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 20px;
 }
