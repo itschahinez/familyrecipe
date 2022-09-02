@@ -1,6 +1,5 @@
 <%= content_for(:color) { 'navbar-white'} %>
 
-
 <div class="banner">
   <% if @recipe.photo.attached?%>
           <%= cl_image_tag @recipe.photo&.key, class:"img-banner"%>
