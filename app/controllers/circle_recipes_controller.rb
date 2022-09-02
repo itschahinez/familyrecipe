@@ -3,12 +3,14 @@ class CircleRecipesController < ApplicationController
   end
 
   def create
-    # @recipe = Recipe.find(params[:id])
     @circle_recipe = CircleRecipe.new(circle_recipe_params)
+    @recipe = @circle_recipe.recipe
     if @circle_recipe.save
       redirect_to recipe_path(@recipe)
+      flash[:alert] = "#{@recipe.name} has been added to #{@circle_recipe.circle.name}"
     else
       render "recipes/#{@recipe.id}", status: :unprocessable_entity
+      flash[:alert] = "#{@recipe.name} can't be added to #{@circle_recipe.circle.name}"
     end
   end
 
