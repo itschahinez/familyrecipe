@@ -1,6 +1,4 @@
-<%#= content_for(:color) { 'navbar-orange' } %>
-<div class="test">
-</div>
+<%= content_for(:color) { 'navbar-orange' } %>
 
 <div class="main-container recipe-index-container">
   <div class="d-flex recipe-search-container <%= "d-none" if @my_recipes.nil? && @my_circles.nil? %>">
@@ -10,7 +8,7 @@
         class: "form-control search-input-field",
         placeholder: "Search by name, ingredient..."
       %>
-      <%= f.button '<i class="fa-solid fa-magnifying-glass"></i>'.html_safe, class: "search-bar-button" %>
+      <%= f.button '<i class="fa-solid fa-magnifying-glass fa-lg"></i>'.html_safe, class: "search-bar-button" %>
     <% end %>
     <div class="cookie-icon">
       <%= link_to new_recipe_path  do %>
@@ -34,7 +32,7 @@
       <p>There are no recipes matching your search.</p>
     <% else %>
       <div class="cards">
-        <% @results.each do |recipe| %>
+        <% @results.sort_by(&:name).each do |recipe| %>
           <%= render "recipe_card", recipe: recipe %>
         <% end %>
       </div>
@@ -42,10 +40,12 @@
   <% else %>
     <% unless @my_recipes.empty? %>
       <h2>From your recipes</h2>
-      <div class="cards">
-        <% @my_recipes.each do |recipe| %>
-          <%= render "recipe_card", recipe: recipe %>
-        <% end %>
+      <div class="card-slider">
+        <div class="card-wrapper">
+          <% @my_recipes.each do |recipe| %>
+            <%= render "recipe_card", recipe: recipe %>
+          <% end %>
+        </div>
       </div>
     <% end %>
 
@@ -60,10 +60,12 @@
           </div>
         <% else %>
           <h3><%= circle.name %></h3>
-          <div class="cards">
-          <% circle.recipes.sort_by(&:name).each do |recipe| %>
-            <%= render "recipe_card", recipe: recipe %>
-          <% end %>
+          <div class="card-slider">
+            <div class="card-wrapper">
+            <% circle.recipes.sort_by(&:name).each do |recipe| %>
+              <%= render "recipe_card", recipe: recipe %>
+            <% end %>
+            </div>
           </div>
         <% end %>
       <% end %>

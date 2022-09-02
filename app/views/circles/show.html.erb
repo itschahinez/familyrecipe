@@ -1,1 +1,46 @@
-Coucou c'est show de circle
+<%= content_for(:color) { 'navbar-orange'} %>
+
+<div class="main-container">
+
+  <div class="circle-name">
+    <h1><%= @circle.name %></h1>
+  </div>
+
+    <div class="circle-member-container">
+      <% @circle.users.each do |member| %>
+      <div class="circle-member-info">
+        <% if member.photo.attached? %>
+          <%= cl_image_tag member.photo&.key, class:"avatar"%>
+        <% else %>
+          <img class=“avatar” alt=“avatar” src=“https://kitt.lewagon.com/placeholder/users/cveneziani” />
+        <% end %>
+        <%= member.first_name %>
+      </div>
+
+      <%# <div class="delete-member">
+        <i class="fa-solid fa-trash-can"></i>
+      </div> %>
+
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="button-green">add new member</div>
+    </div>
+
+    <div class="recipe-circle">
+      <div class="recipe-circle-name">
+        <h2><%= @circle.name %> Recipes</h2>
+      </div>
+
+      <div class="recipe-circle-add">
+        <i class="fa-solid fa-plus fa-xl"></i>
+      </div>
+    </div>
+
+    <div class="cards">
+      <% @circle.recipes.each do |recipe|%>
+        <%= render "recipes/recipe_card", recipe: recipe %>
+      <% end %>
+    </div>
+</div>

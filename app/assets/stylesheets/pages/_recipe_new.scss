@@ -9,7 +9,8 @@ h4         {
 
 // To style the inputs
 
-#recipe_name, #recipe_category, #recipe_recipe_ingredients_attributes_0_quantity, #recipe_recipe_ingredients_attributes_0_ingredient_id, .input-ingredient, .input-quantity {
+
+#recipe_name, #recipe_category, .input-ingredient, .input-quantity {
   height: 52px !important;
   background-color: white !important;
   border-radius: 10px !important;
@@ -18,17 +19,18 @@ h4         {
   text-transform: capitalize !important;
   box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25) !important;
 }
-#recipe_recipe_ingredients_attributes_0_quantity, .input-quantity {
+.input-quantity {
   border-bottom-right-radius: 0px !important;
   border-top-right-radius: 0px !important;
   width: 100px !important;
 }
 
-#recipe_recipe_ingredients_attributes_0_ingredient_id, .input-ingredient  {
+.input-ingredient  {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   border-left: 1px solid $second-color !important;
 }
+
 
 #recipe_photo {
   height: 100%;
