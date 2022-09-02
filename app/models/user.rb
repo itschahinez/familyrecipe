@@ -11,4 +11,8 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   validates :first_name, length: { maximum: 15 }
+
+  def self.other_users(user)
+    self.where.not(id: user.id)
+  end
 end
