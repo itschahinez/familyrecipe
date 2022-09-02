@@ -6,11 +6,9 @@ class CircleRecipesController < ApplicationController
     # @recipe = Recipe.find(params[:id])
     @circle_recipe = CircleRecipe.new(circle_recipe_params)
     if @circle_recipe.save
-      raise
       redirect_to recipe_path(@recipe)
     else
       render "recipes/#{@recipe.id}", status: :unprocessable_entity
-      raise
     end
   end
 

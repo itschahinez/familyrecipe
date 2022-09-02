@@ -16,7 +16,6 @@ class CirclesController < ApplicationController
   def create
     @circle = Circle.new(circle_params)
     if @circle.save
-      raise
       redirect_to circle_path(@circle)
     else
       render "circles/new", status: :unprocessable_entity
