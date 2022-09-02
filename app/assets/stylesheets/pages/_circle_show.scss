@@ -18,15 +18,31 @@
   gap: 10px;
 }
 
-
 .delete-member {
   .fa-solid {
     color: $primary-color;
   }
 }
 
-.recipe-circle h2 {
+
+.recipe-circle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.recipe-circle-name h2 {
   margin-top: 25px;
+  margin-bottom: 25px;
   color: $primary-color;
   text-decoration: underline;
+}
+
+.recipe-circle {
+  .fa-solid {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: $primary-color;
+  }
 }

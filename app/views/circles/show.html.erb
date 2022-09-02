@@ -29,11 +29,18 @@
     </div>
 
     <div class="recipe-circle">
-      <h2><%= @circle.name %> Recipes</h2>
+      <div class="recipe-circle-name">
+        <h2><%= @circle.name %> Recipes</h2>
+      </div>
+
+      <div class="recipe-circle-add">
+        <i class="fa-solid fa-plus fa-xl"></i>
+      </div>
     </div>
-    <div>
+
+    <div class="cards">
       <% @circle.recipes.each do |recipe|%>
-        <%= recipe.name %>
+        <%= render "recipes/recipe_card", recipe: recipe %>
       <% end %>
     </div>
 </div>
