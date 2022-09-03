@@ -1,32 +1,19 @@
 <%= content_for(:color) { 'navbar-orange'} %>
 
-<div class="main-container">
+<img src="https://images.unsplash.com/photo-1657299170964-205905bb0940?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="circle image" id="circle-index-img">
+
+<div id="circle-list-container">
   <div class="your-circle">
-    <h1>Your Circle</h1>
+    <h1>Your circles</h1>
   </div>
-  <% @circles.each do |circle| %>
-    <div class="little-container">
-      <div class="d-flex justify-content-between mb-2">
+  <% @circles.sort_by(&:name).each do |circle| %>
+    <%= link_to circle_path(circle) do %>
+      <div class="little-container">
         <div class="circle-name">
           <h2><%= circle.name %></h2>
-          <p>Number of recipes : <%= circle.recipes.count %></p>
+          <p><%= circle.recipes.count %> recipe<%= circle.recipes.count == 1 ? "" : "s" %></p>
         </div>
-
-        <div class="icon">
-          <ul>
-            <li>
-              <%= link_to circle_path(circle) do %>
-                <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                <% end %>
-            </li>
-            <li>
-              <i class="fa-solid fa-trash-can fa-lg"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="member-infos">
-        <p>Member</p>
+        <div class="member-infos">
           <% circle.users.each do |member| %>
             <% if member %>
               <%= cl_image_tag member.photo&.key, class:"avatar"%>
@@ -34,11 +21,12 @@
               <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" />
             <% end %>
           <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+      <% end %>
+    <% end %>
 
-    <div class="d-flex justify-content-center align-self-end mt-5">
-      <%= link_to "Create a new circle", new_circle_path, class: "button-green" %>
-    </div>
+  <div class="d-flex justify-content-center align-self-end create-circle-btn">
+    <%= link_to "Create a new circle", new_circle_path, class: "button-green" %>
+  </div>
 </div>
