@@ -26,6 +26,10 @@
   margin: 0 20px auto 20px;
 }
 
+#circle-name-and-count {
+  margin-top: 10px;
+}
+
 .little-container {
   background-color: $rectangle-color;
   display: flex;
@@ -38,16 +42,12 @@
   height: 85px;
 }
 
-.lcreate-circle-btn {
-  margin-top: 0;
-}
-
-.member-infos.avatar {
+.member-infos .avatar {
   height: 50px;
   width: 50px;
   border: 1px solid white;
 }
 
-.member-infos.avatar:not(:first-child) {
-  margin-left: -30px;
+.member-infos .avatar:not(:first-child) {
+  margin-left: -25px;
 }

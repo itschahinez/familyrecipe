@@ -9,7 +9,7 @@
   <% @circles.sort_by(&:name).each do |circle| %>
     <%= link_to circle_path(circle) do %>
       <div class="little-container">
-        <div class="circle-name">
+        <div id="circle-name-and-count">
           <h2><%= circle.name %></h2>
           <p><%= circle.recipes.count %> recipe<%= circle.recipes.count == 1 ? "" : "s" %></p>
         </div>
