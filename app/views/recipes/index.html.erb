@@ -1,14 +1,15 @@
 <%= content_for(:color) { 'navbar-orange' } %>
 
-<div class="recipe-index-container">
-  <div class="recipe-search-container <%= "d-none" if @my_recipes.nil? && @my_circles.nil? %>" data-controller="autocomplete" data-autocomplete-url-value="/autocomplete">
+<div class="recipe-index-container" data-controller="search">
+  <div class="recipe-search-container <%= "d-none" if @my_recipes.nil? && @my_circles.nil? %>" data-controller="autocomplete" data-autocomplete-url-value="/autocomplete" data-autocomplete-submit-on-enter-value="true">
     <div class="d-flex justify-content-between align-items-center">
-      <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search" do |f| %>
+      <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search", data: { "search-target": "form" } do |f| %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control search-input-field",
             placeholder: "Search by name, ingredient...",
-            "data-autocomplete-target": "input"
+            "data-autocomplete-target": "input",
+            "data-search-target": "input"
           %>
         <%= f.button '<i class="fa-solid fa-magnifying-glass fa-lg"></i>'.html_safe, class: "search-bar-button" %>
       <% end %>

@@ -13,11 +13,13 @@
 // window.Stimulus = Application.start()
 // const context = require.context("./controllers", true, /\.js$/)
 // Stimulus.load(definitionsFromContext(context))
-import { Application } from "@hotwired/stimulus"
+import { application } from "./application"
 import { Autocomplete } from "stimulus-autocomplete"
 
-const application = Application.start()
 application.register("autocomplete", Autocomplete)
 
 import InsertRecipeImageController from "./insert_recipe_image_controller"
 application.register("insert-recipe-image", InsertRecipeImageController)
+
+import SearchController from "./search_controller.js"
+application.register("search", SearchController)

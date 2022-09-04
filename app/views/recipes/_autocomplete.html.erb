@@ -1,3 +1,3 @@
 <% @search_results.each do |result| %>
-  <li role="option"><%= result.name %></li>
+  <li role="option" data-search-target="autocomplete" data-action="click->search#submit"><%= result.name.capitalize %></li>
 <% end %>

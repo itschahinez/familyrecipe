@@ -54,7 +54,7 @@ class RecipesController < ApplicationController
 
   def autocomplete
     recipes = Recipe.where("name ilike ?", "#{params[:q]}%")
-    ingredients = Ingredient.where("name like ?", "#{params[:q]}%")
+    ingredients = Ingredient.where("name ilike ?", "#{params[:q]}%")
     @search_results = [recipes, ingredients].flatten!
     render partial: 'autocomplete', formats: :html
   end
