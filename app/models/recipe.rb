@@ -30,8 +30,5 @@ class Recipe < ApplicationRecord
   against: [ :name, :description ],
   associated_against: {
     ingredients: [:name]
-  },
-  using: {
-    tsearch: { prefix: true }
   }
 end

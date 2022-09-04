@@ -52,6 +52,13 @@ class RecipesController < ApplicationController
     redirect_to recipes_path, status: :see_other
   end
 
+  def autocomplete
+    recipes = Recipe.where("name ilike ?", "#{params[:q]}%")
+    ingredients = Ingredient.where("name like ?", "#{params[:q]}%")
+    @search_results = [recipes, ingredients].flatten!
+    render partial: 'autocomplete', formats: :html
+  end
+
   private
 
   def recipe_params

@@ -15,6 +15,15 @@
   border-radius: 10px;
   border: none;
   border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 5px rgba(153, 151, 151, 0.2);
+}
+
+.search-input-field:focus {
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: white;
 }
 
 .search-bar-button {
@@ -24,4 +33,23 @@
   position: absolute;
   right: 5px;
   bottom: 25%;
+}
+
+#autocomplete-results ul {
+  padding: 0;
+  width: 275px;
+
+  li {
+    list-style: none;
+    border-left: 1px solid $primary-color;
+    border-right: 1px solid $primary-color;
+    padding: 5px;
+    background-color: white;
+  }
+
+  li:last-child {
+    border-bottom: 1px solid $primary-color;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 }

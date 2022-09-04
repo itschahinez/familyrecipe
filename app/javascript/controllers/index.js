@@ -2,10 +2,10 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+// import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+// import HelloController from "./hello_controller"
+// application.register("hello", HelloController)
 
 // import { Application } from "@hotwired/stimulus"
 // import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
@@ -13,6 +13,11 @@ application.register("hello", HelloController)
 // window.Stimulus = Application.start()
 // const context = require.context("./controllers", true, /\.js$/)
 // Stimulus.load(definitionsFromContext(context))
+import { Application } from "@hotwired/stimulus"
+import { Autocomplete } from "stimulus-autocomplete"
+
+const application = Application.start()
+application.register("autocomplete", Autocomplete)
 
 import InsertRecipeImageController from "./insert_recipe_image_controller"
 application.register("insert-recipe-image", InsertRecipeImageController)
