@@ -34,6 +34,7 @@ eggplant_parmesan = Recipe.create!(
   prep_time: 330
 )
 
+
 eggplant_parmesan_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662034344/y5ddvhjnphh44c1vthsv.jpg")
 eggplant_parmesan.photo.attach(io: eggplant_parmesan_picture, filename: "eggplant_parmesan.jpg", content_type: "image/jpg")
 
