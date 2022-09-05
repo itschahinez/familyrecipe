@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :circles, except: [:edit, :destroy] do
     resources :recipes, only: [:create, :show]
   end
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: [:create, :destroy, :index ]
+  end
   resources :suggestions, only: [:index, :show, :new, :create]
 end
