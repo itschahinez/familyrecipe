@@ -15,6 +15,15 @@
   border-radius: 10px;
   border: none;
   border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 5px rgba(153, 151, 151, 0.2);
+}
+
+.search-input-field:focus {
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: white;
 }
 
 .search-bar-button {

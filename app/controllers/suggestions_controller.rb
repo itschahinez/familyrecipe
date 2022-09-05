@@ -1,19 +1,25 @@
 class SuggestionsController < ApplicationController
  require 'rest-client'
-  APIKEY = 'apiKey=9e90d22711b1459d814597cbbc0c494e'
+  APIKEY = 'apiKey=a030639b196a4b679ee09850e776128c'
 
   def index
-    ingredients = "apples,+flour,+sugar"
+    # ingredients = "apples,+flour,+sugar"
     # get data from the search option
-    @suggestions = creating_suggestions(ingredients)
-    @suggestions.compact!
-    @suggestions.map! do |suggestion|
-      new_recipe_from_suggestion(suggestion)
+    if params[:query].present?
+      ingredients_array = params[:query].split
+      # raise
+      beginning_of_string = ingredients_array.first
+      end_of_string = ingredients_array.drop(1).map { |ingredient| ",+#{ingredient}" }
+      ingredients = beginning_of_string + end_of_string.join
+      # raise
+      @suggestions = creating_suggestions(ingredients)
+      @suggestions.compact!
+      @suggestions.map! { |suggestion| new_recipe_from_suggestion(suggestion) }
     end
+  end
 
     # inject it into the search url of the API (Search by ingredients) - ignorePantry=& true, ranking=1
     # for each of the 10 results, get the name, picture and prep time (API call to get recipe info)
-  end
 
   def show
     suggestion_id = params[:id]
@@ -70,7 +76,7 @@ class SuggestionsController < ApplicationController
           category: suggestion_detail["dishTypes"].first,
           description: description,
         },
-
+        recipe_photo: suggestion_detail["image"],
         ingredients: ingredient_list
       }
     end
@@ -78,6 +84,11 @@ class SuggestionsController < ApplicationController
 
   def new_recipe_from_suggestion(suggestion)
     Recipe.new(suggestion[:recipe_details])
+    suggestion_picture_upload_response = Cloudinary::Uploader.upload(suggestion[:recipe_photo])
+    raise
+    suggestion_picture_url = suggestion_picture_upload_response["secure_url"]
+    suggestion_picture = URI.open(suggestion_picture_url)
+    suggestion.photo.attach(io: suggestion_picture, filename: "#{suggestion[:recipe_details][:suggestion_id]}.jpg", content_type: "image/jpg")
   end
 
   # def ingredients_from_suggestion(suggestion)
