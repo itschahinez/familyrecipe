@@ -1,8 +1,23 @@
+<%= content_for(:color) { 'navbar-orange'} %>
+
 <h1>Find inspiration</h1>
 
 
 Search bar with tags
 
 <% @suggestions.each do |suggestion| %>
-  <%= link_to suggestion.name, suggestion_path(suggestion.suggestion_id) %>
-<% end %>
+<ul class="recipe-list">
+  <li>
+    <%= link_to suggestion.name, suggestion_path(suggestion.suggestion_id) %>
+      <div class="card-category", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food' %>)">
+        <div class="recipe-card-text">
+        <p><%= recipe.name %></p>
+          <div class="recipe-card-duration">
+            <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </li>
+</ul>
+<%# end %>
