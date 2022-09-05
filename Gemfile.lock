@@ -291,7 +291,6 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   jbuilder
-  jquery-rails
   jsbundling-rails
   pg (~> 1.1)
   pg_search
