@@ -5,11 +5,13 @@
 
 Search bar with tags
 <%# Mettre search bar %>
+<%# Faire en sorte qu'on puisse chercher plusieurs ingrédients %>
+<%# Avoir une liste de tous les ingrédients quand on tape %>
 
-<% @suggestions.each do |suggestion| %>
+<% @suggestions.each do |recipe| %>
 <ul class="recipe-list">
   <li>
-    <%= link_to suggestion.name, suggestion_path(suggestion.suggestion_id) %>
+    <%= link_to recipe.name, suggestion_path(recipe.suggestion_id) %>
       <div class="card-category", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food' %>)">
         <div class="recipe-card-text">
         <p><%= recipe.name %></p>
