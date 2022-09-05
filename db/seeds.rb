@@ -27,7 +27,7 @@ eggplant_parmesan = Recipe.create!(
   description: 'Place eggplant slices in a large bowl in layers, sprinkling each layer with salt. Let stand for 30 minutes to drain. Rinse and dry on paper towels.
   Heat olive oil in a large skillet over medium heat. Whisk eggs with water and flour until smooth. Dip eggplant slices in batter and fry in the hot oil until golden brown, working in batches of 2 to 3 slices at a time.
   Mix seasoned bread crumbs with Parmesan cheese in a bowl. Place 1/4 of the eggplant slices into a slow cooker and top with 1/4 of the crumbs, 1/4 of the marinara sauce, and 1/4 of the mozzarella cheese. Repeat layers three more times.',
-  category: 1,
+  category: "main",
   creator_id: cyril.id,
   preptime_hour: 5,
   preptime_mn: 30,
@@ -59,7 +59,7 @@ chocolate_mousse = Recipe.create!(
   Melt chocolate chips in the top of a double boiler over simmering water, stirring frequently and scraping down the sides with a rubber spatula to avoid scorching.
   Fold melted chocolate into the mascarpone cheese mixture.
   Refrigerate until set, 1 to 2 hours.',
-  category: 2,
+  category: "dessert",
   creator_id: mercotte.id,
   preptime_hour: 1,
   preptime_mn: 15,
@@ -85,7 +85,7 @@ tzatziki = Recipe.create!(
   name: 'Tzatziki',
   description: 'Combine yogurt, grated cucumber, lemon juice, olive oil, and garlic together in a large bowl. Add dill, salt, pepper, and lemon zest; mix until smooth.
   Pour into a serving dish, cover tightly, and refrigerate 8 hours before serving.',
-  category: 0,
+  category: "entree",
   creator_id: mercotte.id,
   preptime_hour: 0,
   preptime_mn: 15,
@@ -112,7 +112,7 @@ eggplant_pasta = Recipe.create!(
   description: '1. Heat 1 tablespoon oil in a skillet over medium heat. Add pancetta; cook until browned on the edges, about 5 minutes. Add eggplant and remaining 2 tablespoons olive oil; cook until eggplant is slightly softened, about 5 minutes.<br>
   2. Pour marinara sauce, tomatoes, and wine into the skillet. Add red pepper flakes, black pepper, garlic salt, sugar, and white pepper. Stir and cover. Let sauce simmer until flavors combine, about 20 minutes.<br>
   3. Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain; mix with the sauce.',
-  category: 1,
+  category: "main",
   creator_id: cyril.id,
   preptime_hour: 0,
   preptime_mn: 45,

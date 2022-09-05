@@ -2,3 +2,7 @@
 
 
 Search bar with tags
+
+<% @suggestions.each do |suggestion| %>
+  <%= link_to suggestion.name, suggestion_path(suggestion.suggestion_id) %>
+<% end %>
