@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :circle_recipes, only: [:create, :destroy]
   resources :circles, except: [:edit, :destroy] do
-    resources :recipes, only: [:create, :show]
+    resources :recipes, only: [:new, :create, :show]
   end
   resources :recipes
   resources :suggestions, only: [:index, :show, :new, :create]

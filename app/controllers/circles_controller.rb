@@ -5,11 +5,14 @@ class CirclesController < ApplicationController
 
   def show
     @circle = Circle.find(params[:id])
+    @participation = @circle.participations.build
+    @other_users = User.all - @circle.users
+    @circle_recipe = CircleRecipe.new
   end
 
   def new
     @circle = Circle.new
-    @participation = @circle.participations.build
+    @users = @circle.participations.build
     @other_users = User.other_users(current_user)
   end
 
@@ -24,6 +27,12 @@ class CirclesController < ApplicationController
   end
 
   def update
+    @circle = Circle.find(params[:id])
+    if @circle.update(circle_params)
+      redirect_to @circle
+    else
+      render @circle
+    end
   end
 
   private

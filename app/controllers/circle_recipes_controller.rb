@@ -6,7 +6,7 @@ class CircleRecipesController < ApplicationController
     @circle_recipe = CircleRecipe.new(circle_recipe_params)
     @recipe = @circle_recipe.recipe
     if @circle_recipe.save
-      redirect_to recipe_path(@recipe)
+      redirect_to circle_path(@circle_recipe.circle.id)
       flash[:alert] = "#{@recipe.name} has been added to #{@circle_recipe.circle.name}"
     else
       render "recipes/#{@recipe.id}", status: :unprocessable_entity
