@@ -7,15 +7,19 @@ class SuggestionsController < ApplicationController
     # get data from the search option
     @suggestions = creating_suggestions(ingredients)
     @suggestions.compact!
+    @suggestions.map! do |suggestion|
+      new_recipe_from_suggestion(suggestion)
+    end
 
     # inject it into the search url of the API (Search by ingredients) - ignorePantry=& true, ranking=1
     # for each of the 10 results, get the name, picture and prep time (API call to get recipe info)
-
   end
 
   def show
     suggestion_id = params[:id]
     @suggestion = single_suggestion_detail(suggestion_id)
+    new_recipe_from_suggestion(@suggestion)
+
     # for the recipe we inject the ID into the search URL of the API (Get analyzed recipe ) for instructions
     # for the recipe we inject the ID ouinto the search URL of the API (get picture, ready in minutes, ingredient list, category) for instructions (change validations on category and maybe units)
     # change the appropriate fields
@@ -24,10 +28,6 @@ class SuggestionsController < ApplicationController
   end
 
   private
-
-  def set_suggestion
-
-  end
 
   def creating_suggestions(ingredients)
     search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?#{APIKEY}&ingredients=#{ingredients}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
@@ -50,20 +50,40 @@ class SuggestionsController < ApplicationController
     suggestion_description = RestClient.get recipe_instructions_url, {accept: :json}
     suggestion_description = JSON.parse(suggestion_description.body)
 
-APIKEY
     recipe_parameters = [suggestion_detail["title"], suggestion_detail["id"], suggestion_detail["readyInMinutes"], suggestion_detail["dishTypes"], !suggestion_description.empty?]
     if recipe_parameters.all?
       steps = suggestion_description.first["steps"].map! { |instructions| instructions["step"] }
       description = steps.join(" ")
 
-      recipe = Recipe.new(name: suggestion_detail["title"],
-        suggestion_id: suggestion_detail["id"],
-        prep_time: suggestion_detail["readyInMinutes"],
-        preptime_hour: suggestion_detail["readyInMinutes"]/60,
-        preptime_mn: suggestion_detail["readyInMinutes"] % 60,
-        category: suggestion_detail["dishTypes"].first,
-        description: description
-      )
+      ingredient_list = suggestion_detail["extendedIngredients"].map! do |ingredient|
+        { name: ingredient["name"], unit: ingredient["unit"], quantity: ingredient["amount"] }
+      end
+
+
+      suggestion_params = {
+        recipe_details: {
+          name: suggestion_detail["title"],
+          suggestion_id: suggestion_detail["id"],
+          prep_time: suggestion_detail["readyInMinutes"],
+          preptime_hour: suggestion_detail["readyInMinutes"]/60,
+          preptime_mn: suggestion_detail["readyInMinutes"] % 60,
+          category: suggestion_detail["dishTypes"].first,
+          description: description,
+        },
+
+        ingredients: ingredient_list
+      }
     end
   end
+
+  def new_recipe_from_suggestion(suggestion)
+    Recipe.new(suggestion[:recipe_details])
+  end
+
+  # def ingredients_from_suggestion(suggestion)
+  #   ingredient_list = suggestion["ingredients"]
+  #   ingredient_list.each do |ingredient|
+  #     ingredient = Ingredient.new(name: ingredient["name"], unit: ingredient["unit"])
+  #     RecipeIngredient.new(ingredient: ingredient, quantity: ingredient["amount"])
+  #   end
 end
