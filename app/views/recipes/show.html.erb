@@ -41,9 +41,9 @@
     <div class="symbol">
       <ul>
         <li>
-          <%= link_to '#' do %>
+          <a href="#new_comment">
             <i class="fa-solid fa-comment fa-lg"></i>
-          <% end %>
+          </a>
         </li>
         <% if current_user == @recipe.creator %>
           <li>
@@ -73,16 +73,51 @@
     <h3>Instructions</h3>
       <p><%= @recipe.description %></p>
   </div>
-
 </div>
 
-<div class="main-container my-4 mx-5">
-  <h3>Add to a group</h3>
+<div class="comment-container">
+<%# <div class="main-container my-4 mx-5 "> %>
+  <div class="d-flex justify-content-left">
+    <h3>Add to a group</h3>
+  </div>
+  <div class="d-flex justify-content-left">
     <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
       <%= cr.hidden_field :recipe_id, value: @recipe.id %>
-      <%= cr.association :circle, collection: current_user.circles, label: false, input_html: {class: "search-input-field"} %>
-      <div class="d-flex justify-content-center my-3">
+      <%= cr.association :circle, collection: current_user.circles, label: false, input_html: {class: "search-input-field input-add"} %>
+  </div>
+      <div class="d-flex justify-content-center mb-4">
         <%= cr.submit "Add to group", class: 'button-green' %>
       </div>
     <% end %>
+<%# </div> %>
+
+  <h2>Leave a comment</h2>
+  <%= simple_form_for [@recipe, @comment] do |f| %>
+    <%= f.input :content, placeholder: "Write your feelings", label: false %>
+    <div class="d-flex justify-content-center">
+      <%= f.submit "Submit", class: "button-green mb-4" %>
+    </div>
+  <% end %>
+
+  <h2>Comments</h2>
+  <div>
+    <ul>
+      <% @recipe.comments.each do |comment| %>
+        <small class="comment-date"><%= comment.created_at.strftime("%d-%m-%Y / %Hh%M") %></small>
+        <li class="comment-description">
+          <div>
+            <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani"/>
+          </div>
+          <div class="px-4">
+            <%= comment.content %>
+          </div>
+          <% if comment.user == current_user %>
+            <%= link_to recipe_comment_path(comment.recipe.id, comment), data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-trash-can fa-lg"></i>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

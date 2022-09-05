@@ -1,0 +1,14 @@
+<h2>Comments</h2>
+<ul class="list-group">
+  <% @recipe.comments.each do |comment| %>
+    <li class="list-group-item"><%= recipe.comment %></li>
+  <% end %>
+</ul>
+
+<li class="list-group-item">
+  <%= comment.content %>
+  <%= link_to "Delete",
+    review_path(comment),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+</li>
