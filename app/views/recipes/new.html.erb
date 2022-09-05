@@ -52,19 +52,17 @@
       <div data-nested-form-target="target">
 </div>
 
-    <button type="button" data-action="nested-form#add" class="button-orange w-100 b-0 ml-0"><i class="fa-solid fa-plus"></i></button>
-    <div class="d-flex">
-      <h4>Recipe instructions</h4>
-    </div>
-      <%= f.input :description, class: "search-input-field shadow-none background description", label: false %>
-    <div class="b-0 my-4 mr-0 d-flex justify-content-center">
-
-      <%= f.submit class: "button-green " %>
-    </div>
-    <% end %>
-
-
+<button type="button" data-action="nested-form#add" class="button-orange w-100 b-0 ml-0"><i class="fa-solid fa-plus"></i></button>
+<div class="d-flex">
+    <h4>Recipe instructions</h4>
   </div>
+    <%= f.input :description, class: "search-input shadow-none background description", label: false %>
+  <div class="b-0 my-4 mr-0 d-flex justify-content-center">
+
+    <%= f.submit class: "button-green " %>
+  </div>
+  <% end %>
+</div>
 
 <%# :input_html => {:onChange => 'upload();'} %>
  <%# data-controller="insert-recipe-image" %>
