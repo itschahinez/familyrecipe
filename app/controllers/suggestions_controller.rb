@@ -1,6 +1,6 @@
 class SuggestionsController < ApplicationController
  require 'rest-client'
-  APIKEY = ENV["SPOON_API"]
+  APIKEY = 'apiKey=9e90d22711b1459d814597cbbc0c494e'
 
   def index
     ingredients = "apples,+flour,+sugar"
@@ -19,7 +19,7 @@ class SuggestionsController < ApplicationController
     suggestion_id = params[:id]
     suggestion = single_suggestion_detail(suggestion_id)
     @suggestion = new_recipe_from_suggestion(suggestion)
-    @ingredients = suggestion["ingredients"]
+    @ingredients = suggestion[:ingredients]
     # for the recipe we inject the ID into the search URL of the API (Get analyzed recipe ) for instructions
     # for the recipe we inject the ID ouinto the search URL of the API (get picture, ready in minutes, ingredient list, category) for instructions (change validations on category and maybe units)
     # change the appropriate fields
@@ -30,7 +30,7 @@ class SuggestionsController < ApplicationController
   private
 
   def creating_suggestions(ingredients)
-    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=#{APIKEY}&ingredients=#{ingredients}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
+    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?#{APIKEY}&ingredients=#{ingredients}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
     response = RestClient.get search_by_ing_url, {accept: :json}
     response = response.body
 
@@ -42,11 +42,11 @@ class SuggestionsController < ApplicationController
   end
 
   def single_suggestion_detail(suggestion_id)
-    recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?apiKey=#{APIKEY}"
+    recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?#{APIKEY}"
     suggestion_detail = RestClient.get recipe_info_url, {accept: :json}
     suggestion_detail = JSON.parse(suggestion_detail.body)
 
-    recipe_instructions_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/analyzedInstructions?apiKey=#{APIKEY}"
+    recipe_instructions_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/analyzedInstructions?#{APIKEY}"
     suggestion_description = RestClient.get recipe_instructions_url, {accept: :json}
     suggestion_description = JSON.parse(suggestion_description.body)
 
