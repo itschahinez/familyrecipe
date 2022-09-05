@@ -2,6 +2,8 @@
 
 <div class="main-container">
 
+  <%# <%= link_to 'Visio', circle_visio_path(@circle) %>
+
   <div class="circle-name-add">
     <div class="circle-name">
       <h1><%= @circle.name %></h1>
@@ -16,9 +18,11 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add new member</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+
+
           </div>
 
           <div class="modal-body">
@@ -80,7 +84,7 @@
       <div class="recipe-circle-add">
 
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalRecipe" class="modify-button">
-          <i class="fa-solid fa-plus fa-xl"></i>
+          <i class="fa-solid fa-plus fa-xl clr-primary"></i>
         </button>
 
         <div class="modal fade" id="exampleModalRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,9 +92,10 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add new recipe</h5>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  <div type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <%# <span aria-hidden="true">&times;</span> %>
+                  </div>
               </div>
 
               <div class="modal-body">

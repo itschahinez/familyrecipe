@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @disable_navbar = true
   end
+
+  def visio
+  end
 end
