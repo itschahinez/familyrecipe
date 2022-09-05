@@ -1,7 +1,12 @@
 <%= content_for(:color) { 'navbar-white'} %>
 
 <div class="banner">
-    <img class='img-banner' alt='img-banner' src= <%= @suggestion.photo %> />
+  <% if @suggestion.photo.attached?%>
+    <%= cl_image_tag @suggestion.photo&.key, class:"img-banner"%>
+  <% else %>
+    <img class='img-banner' alt='img-banner' src= />
+    <%= "https://source.unsplash.com/random/?#{@suggestion.name}" %>
+  <% end %>
 </div>
 
 <div class="recipe-infos">
