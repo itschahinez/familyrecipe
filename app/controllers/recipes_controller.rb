@@ -79,6 +79,10 @@ class RecipesController < ApplicationController
     render partial: 'autocomplete', formats: :html
   end
 
+  def assign_creator
+    @recipe = Recipe.find(params[:id])
+  end
+
   private
 
   def recipe_params

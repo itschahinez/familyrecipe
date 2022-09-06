@@ -100,7 +100,7 @@
   <% end %>
 
   <h2>Comments</h2>
-  <div>
+  <div class = "box-comment">
     <ul>
       <% @recipe.comments.each do |comment| %>
         <small class="comment-date"><%= comment.created_at.strftime("%d-%m-%Y / %Hh%M") %></small>
