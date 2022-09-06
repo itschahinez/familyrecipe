@@ -23,10 +23,6 @@
   color: white;
 }
 
-.recipe-link:hover {
-  color: $primary-color;
-}
-
 .cookie-icon {
   display: inline-block;
   position: relative;
@@ -57,5 +53,6 @@
   height: 200px;
   width: 100%;
   object-fit: cover;
+  margin-top: 20px;
   margin-bottom: 20px;
 }

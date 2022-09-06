@@ -2,6 +2,13 @@
   text-decoration: underline;
 }
 
+.circle-name {
+  .fa-solid {
+    color: black;
+    font-size: 15px;
+  }
+}
+
 .circle-name-add {
   display: flex;
   justify-content: space-between;
@@ -9,9 +16,12 @@
 }
 
 .circle-add-member {
-  .fa-solid {
-    color: $primary-color;
+  a{
+    .fa-solid {
+      color: $primary-color;
+    }
   }
+
 }
 
 .circle-member-container {
@@ -54,10 +64,11 @@
   text-decoration: underline;
 }
 
-.recipe-circle {
-  .fa-solid {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    color: $primary-color;
-  }
+.fa-solid.fa-circle-xmark {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: $primary-color;
+}
+.clr-primary {
+  color: $primary-color;
 }

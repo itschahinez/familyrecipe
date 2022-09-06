@@ -1,2 +1,39 @@
-<h1>Suggestions#index</h1>
-<p>Find me in app/views/suggestions/index.html.erb</p>
+<%= content_for(:color) { 'navbar-orange'} %>
+
+<!-- Search bar with tags -->
+<%# Mettre search bar %>
+<%# Faire en sorte qu'on puisse chercher plusieurs ingrédients %>
+<%# Avoir une liste de tous les ingrédients quand on tape %>
+<div class="main-container">
+  <h1>Find inspiration</h1>
+  <h3>Get new ideas by ingredient!</h3>
+
+  <div class="d-flex recipe-search-container justify-content-center mt-4">
+      <%= form_with url: suggestions_path, method: :get, class: "d-flex recipe-search" do |f| %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control search-input-field",
+          placeholder: "tomato avocado"
+        %>
+        <%= f.button '<i class="fa-solid fa-magnifying-glass fa-lg"></i>'.html_safe, class: "search-bar-button" %>
+      <% end %>
+    </div>
+
+
+  <% if params[:query].present? %>
+    <div>
+      <% @suggestions.each_with_index do |recipe, index| %>
+        <%= link_to suggestion_path(recipe.suggestion_id), class: "recipe-link" do %>
+          <div class="card-category suggestion-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= @suggestion_pictures[index]%>)">
+            <div class="recipe-card-text">
+              <p><%= recipe.name %></p>
+              <div class="recipe-card-duration">
+                <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
