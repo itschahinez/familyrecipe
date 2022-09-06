@@ -64,7 +64,7 @@
 
   <div class="circle-member-container">
 
-    <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete }, class: "exit-circle" do%>
+    <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete }, turbo_confirm: "Are you sure?", class: "exit-circle" do %>
       <i class="fa-solid fa-person-walking-arrow-right">  Exit group</i>
     <% end %>
 
@@ -131,7 +131,19 @@
 
   <div class="cards">
     <% @circle.recipes.each do |recipe|%>
-      <%= render "recipes/recipe_card", recipe: recipe %>
+      <div class="card-category circle-recipes-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food' %>)">
+        <%= link_to recipe_path(recipe), class: "recipe-link" do %>
+          <%= link_to circle_recipe_path(@circle, recipe: recipe), data: { turbo_method: :delete }, class: "delete-recipe-icon" do %>
+            <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+          <div class="recipe-card-text">
+            <p><%= recipe.name %></p>
+            <div class="recipe-card-duration">
+              <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
