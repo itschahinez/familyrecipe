@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @circle_recipe = CircleRecipe.new
     @comment = Comment.new
-    @all_friends = current_user.circles.map { |circle| circle.users }.flatten.uniq
+    @all_friends = current_user.circles.map(&:users).flatten.uniq
   end
 
   def new
