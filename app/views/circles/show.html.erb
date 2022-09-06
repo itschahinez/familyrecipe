@@ -115,7 +115,7 @@
               <div class="modal-body">
                 <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
                   <%= cr.hidden_field :circle_id, value: @circle.id %>
-                  <%= cr.association :recipe, collection: Recipe.all - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
+                  <%= cr.association :recipe, collection: Recipe.where.not(creator_id: nil) - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
                   <div class="center-button">
                     <%= cr.submit "Add to group", class: 'button-green' %>
                   </div>
