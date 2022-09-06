@@ -31,6 +31,7 @@ class Recipe < ApplicationRecord
   # enum category: { entree: 0, main: 1, dessert: 2 }
 
   accepts_nested_attributes_for :recipe_ingredients
+  accepts_nested_attributes_for :circle_recipes
 
   pg_search_scope :global_search,
   against: [ :name, :description ],
