@@ -60,10 +60,22 @@ class RecipesController < ApplicationController
 
   def autocomplete
     my_recipes = current_user.recipes.where("name ilike ?", "#{params[:q]}%")
+    my_recipes_names = my_recipes.map(&:name)
+
     my_circle_recipes_ids = current_user.circles.map { |circle| circle.recipes.map(&:id) }.flatten!
     my_circle_recipes = Recipe.where(id: my_circle_recipes_ids).where("name ilike ?", "#{params[:q]}%")
-    ingredients = Ingredient.where("name ilike ?", "#{params[:q]}%")
-    @search_results = [my_recipes, my_circle_recipes, ingredients].flatten!.uniq!
+    my_circle_recipes_names = my_circle_recipes.map(&:name)
+
+    my_recipe_ingredients_ids = current_user.recipes.map { |recipe| recipe.ingredients.map(&:id) }.flatten!
+    my_recipe_ingredients = Ingredient.where(id: my_recipe_ingredients_ids).where("name ilike ?", "#{params[:q]}%")
+    my_recipe_ingredients_names = my_recipe_ingredients.map(&:name)
+
+    my_recipes_ids = current_user.recipes.map(&:id)
+    all_my_recipes_ids = [my_recipes_ids, my_circle_recipes_ids].flatten.uniq
+    my_recipe_categories = Recipe.where(id: all_my_recipes_ids).where("category ilike ?", "#{params[:q]}%")
+    my_recipe_categories_names = my_recipe_categories.map(&:category)
+
+    @search_results = [my_recipes_names, my_circle_recipes_names, my_recipe_ingredients_names, my_recipe_categories_names].flatten.uniq
     render partial: 'autocomplete', formats: :html
   end
 

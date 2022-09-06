@@ -27,7 +27,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
 
   pg_search_scope :global_search,
-  against: [ :name, :description ],
+  against: [ :name, :description, :category ],
   associated_against: {
     ingredients: [:name]
   }
