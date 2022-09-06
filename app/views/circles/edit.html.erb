@@ -1,0 +1,9 @@
+<%= simple_form_for @circle do |f| %>
+  <% frame_id = dom_id(@circle, "name_turbo_frame") %>
+  <%= turbo_frame_tag frame_id  do %>
+    <div class="d-flex align-items-center">
+      <%= f.input :name, label: false, input_html: { class: "modify-input"}, wrapper_html: {class:"mx-3"} %>
+      <%= f.submit "Save", class: "button-green-small mb-3" %>
+    </div>
+  <% end %>
+<% end %>

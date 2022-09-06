@@ -13,6 +13,7 @@
           <h2><%= circle.name %></h2>
           <p><%= circle.recipes.count %> recipe<%= circle.recipes.count == 1 ? "" : "s" %></p>
         </div>
+
         <div class="member-infos">
           <% circle.users.each do |member| %>
             <% if member %>
