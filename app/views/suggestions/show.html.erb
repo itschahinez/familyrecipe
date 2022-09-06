@@ -4,74 +4,30 @@
   <% if @suggestion.photo.attached?%>
     <%= cl_image_tag @suggestion.photo&.key, class:"img-banner"%>
   <% else %>
-    <img class='img-banner' alt='img-banner' src= />
-    <%= "https://source.unsplash.com/random/?#{@suggestion.name}" %>
+    <img class='img-banner' alt='img-banner' src=<%="https://source.unsplash.com/random/?kitchen utensils"%>/>
   <% end %>
 </div>
 
-<div class="recipe-infos">
+<div class="suggestion-infos">
   <div class="infos">
     <h2><%= @suggestion.name %></h2>
-    <p>Time preparation <br><%= @suggestion.preptime_hour > 0 ? "#{@suggestion.preptime_hour} h " : "" %><%= @suggestion.preptime_mn > 0 ? "#{@suggestion.preptime_mn} min" : "" %></p>
+    <p>Preparation time <br><%= @suggestion.preptime_hour > 0 ? "#{@suggestion.preptime_hour} h " : "" %><%= @suggestion.preptime_mn > 0 ? "#{@suggestion.preptime_mn} min" : "" %></p>
   </div>
 
-<div class="container container-orange">
-  <div class="d-flex justify-content-between mb-2">
-
+<div class="container suggestion-orange">
+  <div class="mb-2">
     <div class="ingredient">
       <h3>Ingredients</h3>
       <ul>
-      <% @recipe.recipe_ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.name}"  %></li>
+      <% @ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient[:quantity]} #{ingredient[:unit]} #{ingredient[:name]}"  %></li>
       <% end %>
-      </ul>
-    </div>
-
-    <div class="symbol">
-      <ul>
-        <li>
-          <%= link_to '#' do %>
-            <i class="fa-solid fa-comment fa-lg"></i>
-          <% end %>
-        </li>
-        <% if current_user == @recipe.creator %>
-          <li>
-          <%= link_to edit_recipe_path(@recipe)  do %>
-            <i class="fa-solid fa-pen-to-square fa-lg"></i>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to '#' do %>
-            <i class="fa-solid fa-circle-plus fa-lg"></i>
-          <% end %>
-        </li>
-
-        <li>
-          <%= link_to recipe_path(@recipe), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            <i class="fa-solid fa-trash-can fa-lg"></i>
-          <% end %>
-        </li>
-        <% end %>
-
       </ul>
     </div>
   </div>
 
   <div class="instruction">
     <h3>Instructions</h3>
-      <p><%= @recipe.description %></p>
+      <p><%= @suggestion.description %></p>
   </div>
-
-</div>
-
-<div class="main-container my-4 mx-5">
-  <h3>Add to a group</h3>
-    <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
-      <%= cr.hidden_field :recipe_id, value: @recipe.id %>
-      <%= cr.association :circle, collection: current_user.circles, label: false, input_html: {class: "search-input-field"} %>
-      <div class="d-flex justify-content-center my-3">
-        <%= cr.submit "Add to group", class: 'button-green' %>
-      </div>
-    <% end %>
 </div>

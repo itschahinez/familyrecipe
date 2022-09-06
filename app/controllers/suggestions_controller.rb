@@ -51,6 +51,7 @@ class SuggestionsController < ApplicationController
     suggestion_description = JSON.parse(suggestion_description.body)
 
     recipe_parameters = [suggestion_detail["title"], suggestion_detail["id"], suggestion_detail["readyInMinutes"], suggestion_detail["dishTypes"], !suggestion_description.empty?]
+
     if recipe_parameters.all?
       steps = suggestion_description.first["steps"].map! { |instructions| instructions["step"] }
       description = steps.join(" ")
