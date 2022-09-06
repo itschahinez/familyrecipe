@@ -58,6 +58,11 @@ class RecipesController < ApplicationController
     # redirect_to restaurant_path(@comment.recipe), status: :see_other
   end
 
+  def assign_creator
+    @recipe = Recipe.find(params[:id])
+
+  end
+
   private
 
   def recipe_params
@@ -66,4 +71,5 @@ class RecipesController < ApplicationController
       recipe_ingredients_attributes: [:quantity, :id, :ingredient_id, :_destroy],
     )
   end
+
 end
