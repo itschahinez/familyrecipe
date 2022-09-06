@@ -31,6 +31,7 @@ class CirclesController < ApplicationController
   end
 
   def update
+    # raise
     @circle = Circle.find(params[:id])
     if @circle.update(circle_params)
       redirect_to @circle

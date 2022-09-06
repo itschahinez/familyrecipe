@@ -15,7 +15,7 @@
         </div>
 
         <div class="member-infos">
-          <% circle.users.each do |member| %>
+          <% circle.users.uniq.each do |member| %>
             <% if member %>
               <%= cl_image_tag member.photo&.key, class:"avatar"%>
             <% else %>

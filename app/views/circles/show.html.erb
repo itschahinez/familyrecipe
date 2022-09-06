@@ -72,7 +72,7 @@
         <%# <i class="fa-solid fa-video"> Call your circle</i>
        <% end %>
 
-    <% @circle.users.each do |member| %>
+    <% @circle.users.uniq.each do |member| %>
       <div class="circle-member-info">
         <% if member.photo.attached? %>
           <%= cl_image_tag member.photo&.key, class:"avatar"%>
@@ -130,7 +130,7 @@
   </div>
 
   <div class="cards">
-    <% @circle.recipes.each do |recipe|%>
+    <% @circle.recipes.uniq.each do |recipe|%>
       <div class="card-category circle-recipes-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food' %>)">
         <%= link_to recipe_path(recipe), class: "recipe-link" do %>
           <%= link_to circle_recipe_path(@circle, recipe: recipe), data: { turbo_method: :delete }, class: "delete-recipe-icon" do %>
