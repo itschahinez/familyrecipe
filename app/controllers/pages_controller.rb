@@ -6,5 +6,6 @@ class PagesController < ApplicationController
   end
 
   def visio
+    @circle = Circle.find(params[:circle_id])
   end
 end
