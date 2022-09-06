@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :circles, through: :participations
   has_many :comments
   has_one_attached :photo
+  # has_many :circle_recipes, class_name: 'Recipe', through: :circles
 
   validates :first_name, length: { maximum: 15 }
 

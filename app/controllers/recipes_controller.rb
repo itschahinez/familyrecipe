@@ -59,9 +59,11 @@ class RecipesController < ApplicationController
   end
 
   def autocomplete
-    recipes = Recipe.where("name ilike ?", "#{params[:q]}%")
+    my_recipes = current_user.recipes.where("name ilike ?", "#{params[:q]}%")
+    my_circle_recipes_ids = current_user.circles.map { |circle| circle.recipes.map(&:id) }.flatten!
+    my_circle_recipes = Recipe.where(id: my_circle_recipes_ids).where("name ilike ?", "#{params[:q]}%")
     ingredients = Ingredient.where("name ilike ?", "#{params[:q]}%")
-    @search_results = [recipes, ingredients].flatten!
+    @search_results = [my_recipes, my_circle_recipes, ingredients].flatten!.uniq!
     render partial: 'autocomplete', formats: :html
   end
 

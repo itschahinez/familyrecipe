@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :circle_recipes, dependent: :destroy
   has_many :circles, through: :circle_recipes
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :users, through: :comments
 
   validates :name, presence: true
