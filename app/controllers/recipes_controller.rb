@@ -44,8 +44,13 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    redirect_to recipes_path(@recipe)
+    # @recipe.update(recipe_params)
+    if @recipe.creator_id.nil?  #Don't remove: important to add a new recipe from suggestions
+      @recipe.update(creator_id: current_user.id)
+      flash[:alert] = "#{@recipe.name} has been added to your recipes"
+      Event.new(description: "#{@recipe.name} has been added to your recipes")
+    end
+    redirect_to suggestions_path(@recipe)
   end
 
   def destroy
@@ -87,8 +92,8 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :description, :category, :prep_time, :preptime_hour, :preptime_mn, :photo,
-      recipe_ingredients_attributes: [:quantity, :id, :ingredient_id, :_destroy],
+      :name, :description, :category, :prep_time, :preptime_hour, :preptime_mn, :photo, :creator_id,
+      recipe_ingredients_attributes: [:quantity, :id, :ingredient_id, :_destroy]
     )
   end
 end
