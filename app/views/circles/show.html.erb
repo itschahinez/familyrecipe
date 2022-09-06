@@ -15,7 +15,7 @@
       <% end %>
     </div>
 
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">
       <i class="fa-solid fa-user-plus fa-lg icon-color"></i>
     </button>
 
@@ -58,15 +58,13 @@
         </div>
       </div>
     </div>
-
   </div>
-
 
   <div class="circle-member-container">
 
-    <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete }, class: "exit-circle" do%>
-      <i class="fa-solid fa-person-walking-arrow-right">  Exit group</i>
-    <% end %>
+      <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to leave this circle?" }, class: "exit-circle" do %>
+        <i class="fa-solid fa-person-walking-arrow-right">  Leave circle</i>
+      <% end %>
 
     <%# <%= link_to circle_visio_path(@circle), class: "visio-circle" do %>
         <%# <i class="fa-solid fa-video"> Call your circle</i>

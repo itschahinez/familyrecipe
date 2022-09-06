@@ -16,5 +16,4 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy, :index ]
   end
   resources :suggestions, only: [:index, :show, :new, :create]
-
 end

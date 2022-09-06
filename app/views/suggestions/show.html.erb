@@ -1,33 +1,49 @@
 <%= content_for(:color) { 'navbar-white'} %>
 
 <div class="banner">
-  <% if @suggestion.photo.attached?%>
-    <%= cl_image_tag @suggestion.photo&.key, class:"img-banner"%>
-  <% else %>
-    <img class='img-banner' alt='img-banner' src=<%="https://source.unsplash.com/random/?kitchen utensils"%>/>
-  <% end %>
+  <% if @recipe.photo.attached?%>
+      <%= cl_image_tag @recipe.photo&.key, class:"img-banner"%>
+    <% else %>
+      <img class='img-banner' alt='img-banner' src='https://source.unsplash.com/random/?food'/>
+    <% end %>
 </div>
 
-<div class="suggestion-infos">
+
+<div class="recipe-infos">
   <div class="infos">
-    <h2><%= @suggestion.name %></h2>
-    <p>Preparation time <br><%= @suggestion.preptime_hour > 0 ? "#{@suggestion.preptime_hour} h " : "" %><%= @suggestion.preptime_mn > 0 ? "#{@suggestion.preptime_mn} min" : "" %></p>
+    <h2><%= @recipe.name %></h2>
+    <p>Time preparation <br><%= @recipe.preptime_hour > 0 ? "#{@recipe.preptime_hour} h " : "" %><%= @recipe.preptime_mn > 0 ? "#{@recipe.preptime_mn} min" : "" %></p>
   </div>
 
-<div class="container suggestion-orange">
-  <div class="mb-2">
-    <div class="ingredient">
-      <h3>Ingredients</h3>
-      <ul>
-      <% @ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient[:quantity]} #{ingredient[:unit]} #{ingredient[:name]}"  %></li>
-      <% end %>
-      </ul>
+  <div class="container container-orange">
+    <div class="d-flex justify-content-between mb-2">
+      <div class="ingredient">
+        <h3>Ingredients</h3>
+        <ul>
+        <% @recipe.recipe_ingredients.each do |ingredient| %>
+          <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.name}"  %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="instruction">
+      <h3>Instructions</h3>
+      <p><%= @recipe.description %></p>
     </div>
   </div>
 
-  <div class="instruction">
-    <h3>Instructions</h3>
-      <p><%= @suggestion.description %></p>
+  <div class="comment-container">
+  <%# <div class="main-container my-4 mx-5 "> %>
+    <div class="d-flex justify-content-left">
+          <%= simple_form_for @recipe do |r| %>
+            <%= r.hidden_field :recipe_id, value: @recipe.id %>
+            <%= r.hidden_field :creator_id, value: current_user %>
+    </div>
+    <div class="d-flex justify-content-center mb-4">
+      <%= r.submit "Save to your recipes", class: 'button-green' %>
+    </div>
+    <% end %>
   </div>
 </div>
+<%# </div> %>
