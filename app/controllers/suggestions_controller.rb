@@ -1,19 +1,27 @@
 class SuggestionsController < ApplicationController
  require 'rest-client'
-  APIKEY = 'apiKey=9e90d22711b1459d814597cbbc0c494e'
+ require 'open-uri'
+APIKEY = ENV["SPOON_API"]
 
   def index
-    ingredients = "apples,+flour,+sugar"
+    # ingredients = "apples,+flour,+sugar"
     # get data from the search option
-    @suggestions = creating_suggestions(ingredients)
-    @suggestions.compact!
-    @suggestions.map! do |suggestion|
-      new_recipe_from_suggestion(suggestion)
+    if params[:query].present?
+      ingredients_array = params[:query].split
+      # raise
+      beginning_of_string = ingredients_array.first
+      end_of_string = ingredients_array.drop(1).map { |ingredient| ",+#{ingredient}" }
+      ingredients = beginning_of_string + end_of_string.join
+      # raise
+      @suggestions = creating_suggestions(ingredients)
+      @suggestions.compact!
+      @suggestion_pictures = @suggestions.map { |suggestion| get_recipe_picture(suggestion) }
+      @suggestions.map! { |suggestion| new_recipe_from_suggestion(suggestion) }
     end
+  end
 
     # inject it into the search url of the API (Search by ingredients) - ignorePantry=& true, ranking=1
     # for each of the 10 results, get the name, picture and prep time (API call to get recipe info)
-  end
 
   def show
     suggestion_id = params[:id]
@@ -30,7 +38,7 @@ class SuggestionsController < ApplicationController
   private
 
   def creating_suggestions(ingredients)
-    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?#{APIKEY}&ingredients=#{ingredients}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
+    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=#{APIKEY}&ingredients=#{ingredients}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
     response = RestClient.get search_by_ing_url, {accept: :json}
     response = response.body
 
@@ -42,16 +50,15 @@ class SuggestionsController < ApplicationController
   end
 
   def single_suggestion_detail(suggestion_id)
-    recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?#{APIKEY}"
+    recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?apiKey=#{APIKEY}"
     suggestion_detail = RestClient.get recipe_info_url, {accept: :json}
     suggestion_detail = JSON.parse(suggestion_detail.body)
 
-    recipe_instructions_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/analyzedInstructions?#{APIKEY}"
+    recipe_instructions_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/analyzedInstructions?apiKey=#{APIKEY}"
     suggestion_description = RestClient.get recipe_instructions_url, {accept: :json}
     suggestion_description = JSON.parse(suggestion_description.body)
 
-    recipe_parameters = [suggestion_detail["title"], suggestion_detail["id"], suggestion_detail["readyInMinutes"], suggestion_detail["dishTypes"], !suggestion_description.empty?]
-
+    recipe_parameters = [suggestion_detail["title"], suggestion_detail["id"], suggestion_detail["readyInMinutes"], suggestion_detail["dishTypes"], !suggestion_description.empty?, suggestion_detail["image"]]
     if recipe_parameters.all?
       steps = suggestion_description.first["steps"].map! { |instructions| instructions["step"] }
       description = steps.join(" ")
@@ -71,14 +78,19 @@ class SuggestionsController < ApplicationController
           category: suggestion_detail["dishTypes"].first,
           description: description,
         },
-
+        recipe_photo: suggestion_detail["image"],
         ingredients: ingredient_list
       }
     end
   end
 
   def new_recipe_from_suggestion(suggestion)
-    Recipe.new(suggestion[:recipe_details])
+    recipe = Recipe.new(suggestion[:recipe_details])
+  end
+
+  def get_recipe_picture(suggestion)
+    suggestion_picture_upload_response = Cloudinary::Uploader.upload(suggestion[:recipe_photo])
+    suggestion_picture_upload_response["secure_url"]
   end
 
   # def ingredients_from_suggestion(suggestion)
