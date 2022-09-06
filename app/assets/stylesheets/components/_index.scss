@@ -20,7 +20,7 @@ h2 {
 
 h3 {
   font-size: 20;
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 h4 {
@@ -30,4 +30,12 @@ h4 {
 
 a {
   text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+body {
+  background: white;
 }

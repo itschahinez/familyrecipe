@@ -1,4 +1,21 @@
-<%= content_for(:color) { 'navbar-white' } %>
-
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# <div class="homepage-centered"> %>
+  <div class="homepage-img">
+    <div class="container-homepage">
+      <% if user_signed_in?%>
+            <div class="homepage-content title-homepage">
+              <h1>Welcome <%= "#{current_user.first_name}" %> to Family Recipe </h1>
+            </div>
+            <div class="homepage-content">
+              <%= link_to "Create a circle", new_circle_path, class: 'button-orange' %>
+            </div>
+            <div class="homepage-content">
+              <%= link_to "My recipes", recipes_path, class: 'button-orange' %>
+            </div>
+        <% else %>
+          <div class="homepage-content d-flex align-items-center">
+            <%= link_to 'Log in',  new_user_session_path, class: 'button-orange'%>
+          </div>
+      <% end %>
+    </div>
+  </div>
+<%# </div> %>

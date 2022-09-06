@@ -1,3 +1,56 @@
+.recipe-index-container {
+  h2 {
+    color: $primary-color;
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+
+  h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+}
+
 .recipe-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recipe-link {
+  color: white;
+}
+
+.cookie-icon {
+  display: inline-block;
+  position: relative;
+
+  .fa-solid {
+    font-size: 30px;
+    color: $primary-color;
+  }
+
+  .fa-plus {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 20px;
+  }
+}
+
+.no-recipes {
+  margin: 20px 0 35px 0;
+  text-align: center;
+
+  p {
+    font-size: 20px;
+  }
+}
+
+#no-recipes-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

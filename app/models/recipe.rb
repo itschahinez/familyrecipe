@@ -1,11 +1,12 @@
 class Recipe < ApplicationRecord
-  has_one_attached :photo
-  enum category: { entree: 0, main: 1, dessert: 2 }
+  include PgSearch::Model
 
-  belongs_to :creator, foreign_key: :creator_id, class_name: 'User', dependent: :destroy
-  has_many :recipe_ingredients
+  has_one_attached :photo
+
+  belongs_to :creator, foreign_key: :creator_id, class_name: 'User'
+  has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-  has_many :circle_recipes
+  has_many :circle_recipes, dependent: :destroy
   has_many :circles, through: :circle_recipes
   has_many :comments
   has_many :users, through: :comments
@@ -19,5 +20,18 @@ class Recipe < ApplicationRecord
   validates :prep_time, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :creator }
 
+
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
+  # enum category: { entree: 0, main: 1, dessert: 2 }
+
   accepts_nested_attributes_for :recipe_ingredients
+
+  pg_search_scope :global_search,
+  against: [ :name, :description ],
+  associated_against: {
+    ingredients: [:name]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
 end

@@ -1,56 +1,84 @@
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
+  margin: 15px 0 30px 0;
+
+  .card-category {
+    height: 180px;
+    width: 100%;
+  }
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 15px 0 10px 0;
+}
+
+.card-slider {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .card-category {
   background-size: cover;
   background-position: center;
   height: 180px;
+  width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-// Smallest device
-@media (min-width: 100px) and (max-width: 575px) {
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
+.recipe-card-text {
+  padding: 20px;
 }
+
+.recipe-card-duration {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+// // Smallest device
+// @media (min-width: 100px) and (max-width: 575px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr;
+//   }
+// }
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  .cards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+// @media (min-width: 576px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr;
+//   }
+// }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+// @media (min-width: 768px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+// @media (min-width: 992px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }
 
 // Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+// @media (min-width: 1200px) {
+//   .cards {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+// }

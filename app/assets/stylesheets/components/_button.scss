@@ -6,8 +6,9 @@
   font-weight: bold;
   height: 52px;
   width: 218px;
+  text-align: center;
+  border: 0;
 }
-
 
 .button-orange {
   background-color: $primary-color;
@@ -17,4 +18,16 @@
   font-weight: bold;
   height: 52px;
   width: 218px;
+  text-align: center;
+  border: 0;
+}
+
+.write-recipe-button {
+  margin-top: 20px;
+}
+
+#inspiration-button {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }

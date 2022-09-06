@@ -52,6 +52,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path, status: :see_other
+
+    # @comment = Comment.find(params[:id])
+    # @comment.destroy
+    # redirect_to restaurant_path(@comment.recipe), status: :see_other
   end
 
   private

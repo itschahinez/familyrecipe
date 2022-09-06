@@ -5,9 +5,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :circle_recipes, only: [:create, :destroy]
   resources :circles, except: [:edit, :destroy] do
-    resources :recipes, only: [:create, :show]
+    resources :recipes, only: [:new, :create, :show]
+    get '/visio', to: 'pages#visio'
   end
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: [:create, :destroy, :index ]
+  end
   resources :suggestions, only: [:index, :show, :new, :create]
 end

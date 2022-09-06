@@ -1,50 +1,77 @@
 <%= content_for(:color) { 'navbar-orange' } %>
 
-<div class="main-container">
+<div class="main-container recipe-index-container">
+  <div class="d-flex recipe-search-container <%= "d-none" if @my_recipes.nil? && @my_circles.nil? %>">
+    <%= form_with url: recipes_path, method: :get, class: "d-flex recipe-search" do |f| %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-input-field",
+        placeholder: "Search by name, ingredient..."
+      %>
+      <%= f.button '<i class="fa-solid fa-magnifying-glass fa-lg"></i>'.html_safe, class: "search-bar-button" %>
+    <% end %>
+    <div class="cookie-icon">
+      <%= link_to new_recipe_path  do %>
+        <i class="fa-solid fa-cookie-bite"></i>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+
   <% if @my_recipes.empty? && @my_circles.empty? %>
-    <p>You don't have any recipe yet!<p>
-    <p>Click here to add a new one:</p>
-    <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
-  <% else %>
-    <% unless @my_recipes.empty? %>
-      <h2>From your recipes</h2>
+    <div class="no-recipes">
+      <h3>You don't have any recipe yet!</h3>
+      <img id="no-recipes-image" src="https://res.cloudinary.com/chahinezh/image/upload/v1662067855/faxt2ojk55dmyxq0sfou.jpg" alt="empty plate">
+      <div class="write-recipe-button">
+        <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>
+      </div>
+    </div>
+  <% elsif params[:query].present? %>
+    <h2>Search results</h2>
+    <% if @results.empty? %>
+      <p>There are no recipes matching your search.</p>
+    <% else %>
       <div class="cards">
-        <% @my_recipes.each do |recipe| %>
-          <ul class="recipe-list">
-            <li>
-              <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
-                <p><%= recipe.name %></p>
-                <p><%= recipe.preptime_hour > 0 ? "#{recipe.preptime_hour} h " : "" %><%= recipe.preptime_mn > 0 ? "#{recipe.preptime_mn} min" : "" %></p>
-              </div>
-            </li>
-          </ul>
+        <% @results.sort_by(&:name).each do |recipe| %>
+          <%= render "recipe_card", recipe: recipe %>
         <% end %>
       </div>
     <% end %>
+  <% else %>
+    <% unless @my_recipes.empty? %>
+      <h2>From your recipes</h2>
+      <div class="card-slider">
+        <div class="card-wrapper">
+          <% @my_recipes.each do |recipe| %>
+            <%= render "recipe_card", recipe: recipe %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
-    <% unless @my_circles.empty? %>
+    <% unless @my_circles.nil? || @my_circles.empty? %>
       <h2>From your circles</h2>
       <% @my_circles.each do |circle| %>
         <% if circle.recipes.empty? %>
           <h3><%= circle.name %></h3>
-          <p>There are no recipes in this circle at the moment.<p>
-          <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
+          <div class="no-recipes">
+            <p>There are no recipes in this circle<br>at the moment.</p>
+            <%= link_to "Add a recipe in this circle", circle_path(circle), class: "button-orange" %>
+          </div>
         <% else %>
           <h3><%= circle.name %></h3>
-          <div class="cards">
-          <% circle.recipes.each do |recipe| %>
-            <ul class="recipe-list">
-              <li>
-                <div class="card-category", style="background-image: url(<%= recipe.photo.nil? ? recipe.photo : 'https://source.unsplash.com/random/?food' %>)">
-                  <p><%= recipe.name %></p>
-                  <p><%= recipe.preptime_hour %></p>
-                </div>
-              </li>
-            </ul>
-          <% end %>
+          <div class="card-slider">
+            <div class="card-wrapper">
+            <% circle.recipes.sort_by(&:name).each do |recipe| %>
+              <%= render "recipe_card", recipe: recipe %>
+            <% end %>
+            </div>
           </div>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
+  <div id="inspiration-button">
+    <%= link_to "Find inspiration", suggestions_path, class: "button-green" %>
+  </div>
 </div>

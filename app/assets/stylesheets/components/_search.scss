@@ -1,6 +1,36 @@
-.rectangle {
+.recipe-search-container {
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 15px 20px 0;
+}
+
+.recipe-search {
+  position: relative;
+  width: 275px;
+}
+
+.search-input-field {
   height: 52px;
-  width: 250px;
   background-color: white;
-  border-radius: 25px;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 5px rgba(153, 151, 151, 0.2);
+}
+
+.search-input-field:focus {
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: white;
+}
+
+.search-bar-button {
+  border: none;
+  color: black;
+  background-color: transparent;
+  position: absolute;
+  right: 5px;
+  bottom: 25%;
 }

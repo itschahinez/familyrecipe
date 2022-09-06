@@ -1,2 +1,33 @@
-<h1>Suggestions#show</h1>
-<p>Find me in app/views/suggestions/show.html.erb</p>
+<%= content_for(:color) { 'navbar-white'} %>
+
+<div class="banner">
+  <% if @suggestion.photo.attached?%>
+    <%= cl_image_tag @suggestion.photo&.key, class:"img-banner"%>
+  <% else %>
+    <img class='img-banner' alt='img-banner' src=<%="https://source.unsplash.com/random/?kitchen utensils"%>/>
+  <% end %>
+</div>
+
+<div class="suggestion-infos">
+  <div class="infos">
+    <h2><%= @suggestion.name %></h2>
+    <p>Preparation time <br><%= @suggestion.preptime_hour > 0 ? "#{@suggestion.preptime_hour} h " : "" %><%= @suggestion.preptime_mn > 0 ? "#{@suggestion.preptime_mn} min" : "" %></p>
+  </div>
+
+<div class="container suggestion-orange">
+  <div class="mb-2">
+    <div class="ingredient">
+      <h3>Ingredients</h3>
+      <ul>
+      <% @ingredients.each do |ingredient| %>
+        <li><%= "#{ingredient[:quantity]} #{ingredient[:unit]} #{ingredient[:name]}"  %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="instruction">
+    <h3>Instructions</h3>
+      <p><%= @suggestion.description %></p>
+  </div>
+</div>
