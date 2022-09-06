@@ -17,9 +17,9 @@ class SuggestionsController < ApplicationController
 
   def show
     suggestion_id = params[:id]
-    @suggestion = single_suggestion_detail(suggestion_id)
-    new_recipe_from_suggestion(@suggestion)
-
+    suggestion = single_suggestion_detail(suggestion_id)
+    @suggestion = new_recipe_from_suggestion(suggestion)
+    @ingredients = suggestion[:ingredients]
     # for the recipe we inject the ID into the search URL of the API (Get analyzed recipe ) for instructions
     # for the recipe we inject the ID ouinto the search URL of the API (get picture, ready in minutes, ingredient list, category) for instructions (change validations on category and maybe units)
     # change the appropriate fields
@@ -51,6 +51,7 @@ class SuggestionsController < ApplicationController
     suggestion_description = JSON.parse(suggestion_description.body)
 
     recipe_parameters = [suggestion_detail["title"], suggestion_detail["id"], suggestion_detail["readyInMinutes"], suggestion_detail["dishTypes"], !suggestion_description.empty?]
+
     if recipe_parameters.all?
       steps = suggestion_description.first["steps"].map! { |instructions| instructions["step"] }
       description = steps.join(" ")
