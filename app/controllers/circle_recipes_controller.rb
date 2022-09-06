@@ -15,6 +15,11 @@ class CircleRecipesController < ApplicationController
   end
 
   def destroy
+    @circle = Circle.find(params[:id])
+    @recipe = Recipe.find(params[:recipe])
+    @circle_recipe = CircleRecipe.find_by(circle: @circle, recipe: @recipe)
+    @circle_recipe.destroy
+    redirect_to @circle, status: :see_other
   end
 
   def circle_recipe_params

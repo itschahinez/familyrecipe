@@ -33,7 +33,7 @@
 .circle-member-container {
   position: relative;
   background-color: $rectangle-color;
-  height: 160px;
+  min-height: 160px;
   margin-top: 15px;
   margin-bottom: 20px;
   padding: 30px 25px 15px 25px;
@@ -58,7 +58,6 @@
   top: 10%;
   right: 3%;
   color: black;
-  font-family: $headers-font;
   font-size: 10px;
 
   &:hover {
@@ -101,5 +100,16 @@
   color: $primary-color;
 }
 .clr-primary {
+  color: $primary-color;
+}
+
+.circle-recipes-card {
+  position: relative;
+}
+
+.delete-recipe-icon {
+  position: absolute;
+  top: 3px;
+  right: 8px;
   color: $primary-color;
 }
