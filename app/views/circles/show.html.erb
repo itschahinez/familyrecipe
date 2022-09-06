@@ -2,11 +2,12 @@
 
 <div class="main-container">
 
-  <%# <%= link_to 'Visio', circle_visio_path(@circle) %>
-
   <div class="circle-name-add">
     <div class="circle-name">
       <h1><%= @circle.name %></h1>
+       <%= link_to circle_visio_path(@circle) do %>
+        <i class="fa-solid fa-video"> Call your circle</i>
+       <% end %>
     </div>
 
     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">

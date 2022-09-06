@@ -2,6 +2,13 @@
   text-decoration: underline;
 }
 
+.circle-name {
+  .fa-solid {
+    color: black;
+    font-size: 15px;
+  }
+}
+
 .circle-name-add {
   display: flex;
   justify-content: space-between;

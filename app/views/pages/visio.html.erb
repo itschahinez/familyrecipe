@@ -1,0 +1,14 @@
+<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+<script>
+  callFrame = window.DailyIframe.createFrame({
+  showLeaveButton: true,
+  iframeStyle: {
+    position: 'fixed',
+    top: '65px',
+    left: '0',
+    width: '100%',
+    height: '90%',
+  },
+});
+  callFrame.join({ url: 'https://circle-visio.daily.co/circle-visio' });
+</script>
