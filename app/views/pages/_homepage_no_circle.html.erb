@@ -1,0 +1,9 @@
+<div class="homepage-content title-homepage">
+  <h1><em>Welcome <%= "#{current_user.first_name}" %> to</em> Family Recipe </h1>
+</div>
+<div class="homepage-content">
+  <%= link_to "Create a circle", new_circle_path, class: 'button-orange' %>
+</div>
+<div class="homepage-content">
+  <%= link_to "My recipes", recipes_path, class: 'button-orange' %>
+</div>

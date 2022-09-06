@@ -5,7 +5,7 @@
   <h1 id="title-circle">Create your circle</h1>
   <%= simple_form_for @circle, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |f| %>
     <div></div>
-    <%= f.input :name, input_html: {class: 'modify-input'}, label_html: {class: 'modify-label'} %>
+    <%= f.input :name, input_html: {class: 'modify-input'}, label_html: {class: 'modify-label'}, label: false %>
     <template data-nested-form-target="template">
     <%= f.simple_fields_for :participations, child_index: 'NEW_RECORD' do |p_fields| %>
       <%= render "circle_form", f: p_fields %>

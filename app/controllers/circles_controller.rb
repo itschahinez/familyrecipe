@@ -19,6 +19,8 @@ class CirclesController < ApplicationController
   def create
     @circle = Circle.new(circle_params)
     if @circle.save
+      # @event = Event.create!(user: current_user,
+        # description: "#{@participation.user} has been added to #{@circle_recipe.circle.name}")
       @user_participation = Participation.create(user: current_user, circle: @circle)
       redirect_to circle_path(@circle)
     else

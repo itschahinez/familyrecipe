@@ -46,16 +46,14 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     redirect_to recipes_path(@recipe)
+    @event = Event.create!(user: current_user,
+      description: "#{@recipe.description} has been modified to #{@recipe.circle.name}")
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path, status: :see_other
-
-    # @comment = Comment.find(params[:id])
-    # @comment.destroy
-    # redirect_to restaurant_path(@comment.recipe), status: :see_other
   end
 
   private
