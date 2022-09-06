@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :recipes, class_name: 'Recipe', foreign_key: :creator_id, dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :circles, through: :participations
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_one_attached :photo
 
   validates :first_name, length: { maximum: 15 }
