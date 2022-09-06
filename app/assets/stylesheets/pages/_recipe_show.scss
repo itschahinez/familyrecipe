@@ -37,11 +37,17 @@
 
 .search-input {
   border-bottom: 1px solid #6A994E !important;
-  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .input-add {
-  width: 350px
+  height: 45px;
+  width: 350px;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .comment-container {
@@ -83,7 +89,7 @@
   border: none !important;
   border-bottom: 1px solid #6A994E !important;
   text-transform: capitalize !important;
-  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .comment-description {

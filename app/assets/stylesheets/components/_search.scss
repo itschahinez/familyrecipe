@@ -14,14 +14,14 @@
   background-color: white;
   border-radius: 10px;
   border: none;
-  border-bottom: 1px solid $second-color;
-  box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid $primary-color;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .search-input-field:focus {
   border-radius: 10px;
   border: none;
-  border-bottom: 1px solid $second-color;
+  border-bottom: 1px solid $primary-color;
   box-shadow: 4px 0 4px rgba(0, 0, 0, 0.25);
   background-color: white;
 }
