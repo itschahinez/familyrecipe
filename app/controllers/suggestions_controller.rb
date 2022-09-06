@@ -1,6 +1,7 @@
 class SuggestionsController < ApplicationController
  require 'rest-client'
-  APIKEY = 'apiKey=a030639b196a4b679ee09850e776128c'
+ require 'open-uri'
+  APIKEY = 'apiKey=a261b74e2aa04d86b784a067acd66b6f'
 
   def index
     # ingredients = "apples,+flour,+sugar"
@@ -14,6 +15,7 @@ class SuggestionsController < ApplicationController
       # raise
       @suggestions = creating_suggestions(ingredients)
       @suggestions.compact!
+      @suggestion_pictures = @suggestions.map { |suggestion| get_recipe_picture(suggestion) }
       @suggestions.map! { |suggestion| new_recipe_from_suggestion(suggestion) }
     end
   end
@@ -83,12 +85,12 @@ class SuggestionsController < ApplicationController
   end
 
   def new_recipe_from_suggestion(suggestion)
-    Recipe.new(suggestion[:recipe_details])
+    recipe = Recipe.new(suggestion[:recipe_details])
+  end
+
+  def get_recipe_picture(suggestion)
     suggestion_picture_upload_response = Cloudinary::Uploader.upload(suggestion[:recipe_photo])
-    raise
-    suggestion_picture_url = suggestion_picture_upload_response["secure_url"]
-    suggestion_picture = URI.open(suggestion_picture_url)
-    suggestion.photo.attach(io: suggestion_picture, filename: "#{suggestion[:recipe_details][:suggestion_id]}.jpg", content_type: "image/jpg")
+    suggestion_picture_upload_response["secure_url"]
   end
 
   # def ingredients_from_suggestion(suggestion)
