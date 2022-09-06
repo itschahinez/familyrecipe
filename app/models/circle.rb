@@ -6,4 +6,5 @@ class Circle < ApplicationRecord
 
   accepts_nested_attributes_for :participations, reject_if: :all_blank, allow_destroy: true, update_only: true
   validates :name, presence: true, length: { maximum: 15 }
+
 end
