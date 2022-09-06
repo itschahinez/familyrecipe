@@ -5,7 +5,11 @@
 .circle-name {
   .fa-solid {
     color: black;
-    font-size: 15px;
+    font-size: 10px;
+
+    &:hover {
+      color: $primary-color;
+    }
   }
 }
 
@@ -19,20 +23,47 @@
   a{
     .fa-solid {
       color: $primary-color;
+      // position: absolute;
+      // right: 0px;
     }
   }
 
 }
 
 .circle-member-container {
+  position: relative;
   background-color: $rectangle-color;
-  height: 140px;
+  height: 160px;
   margin-top: 15px;
   margin-bottom: 20px;
-  padding: 15px 25px 15px 25px;
+  padding: 30px 25px 15px 25px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
+}
+
+// .visio-circle {
+//   position: absolute;
+//   top: 10%;
+//   left: 3%;
+//   color: $primary-color;
+
+//   &:hover {
+//     color: $primary-color;
+//   }
+// }
+
+.exit-circle {
+  position: absolute;
+  top: 10%;
+  right: 3%;
+  color: black;
+  font-family: $headers-font;
+  font-size: 10px;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .circle-member-info {
@@ -50,7 +81,6 @@
   }
 }
 
-
 .recipe-circle {
   display: flex;
   justify-content: space-between;
@@ -62,6 +92,7 @@
   margin-bottom: 25px;
   color: $primary-color;
   text-decoration: underline;
+  // position: relative;
 }
 
 .fa-solid.fa-circle-xmark {
