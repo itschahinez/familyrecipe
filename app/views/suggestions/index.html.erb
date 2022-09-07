@@ -23,6 +23,11 @@
 
 <div class="allrecipes pb-5">
   <% if !session[:search].blank? %>
+    <% if @suggestions.empty? %>
+      <div class="no-recipes">
+        <p>Sorry, we couldn't find any recipes matching your search.</p>
+      </div>
+    <% else %>
     <div>
       <% @suggestions.each do |recipe| %>
         <%= link_to suggestion_path(recipe.id), class: "recipe-link" do %>
@@ -33,9 +38,9 @@
                 <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
