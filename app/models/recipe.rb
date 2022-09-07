@@ -49,14 +49,12 @@ class Recipe < ApplicationRecord
   }
 
   def self.create_all_from_api(query)
-    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=#{APIKEY}&ingredients=#{query.split.join(",+")}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
+    search_by_ing_url = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=#{APIKEY}&ingredients=#{query.gsub(","," ").split.join(",+")}&ignorePantry=true&ranking=1&limitLicense=true&number=10"
     JSON.parse(RestClient.get(search_by_ing_url, {accept: :json}).body).each do |suggestion|
       create_one_from_api(suggestion["id"], query)
     end
   end
 
-
-  649300
   def self.create_one_from_api(suggestion_id, query)
     recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?apiKey=#{APIKEY}"
     suggestion_detail = RestClient.get recipe_info_url, {accept: :json}
