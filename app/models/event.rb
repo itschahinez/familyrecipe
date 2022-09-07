@@ -6,16 +6,12 @@ class Event < ApplicationRecord
   def self.create_event(element, action)
     case element.class
     when CircleRecipe && action == 'create'
-      raise
       Event.create!(description: "#{element.recipe.name} has been added to #{element.circle.name}")
     when Participation && action == 'create'
-      raise
       Event.create!(description: "#{element.user.first_name} has been added to #{element.circle.name}")
     when Recipe && action == 'update'
-      raise
       Event.create!(description: "#{element.name} has been updated")
     else
-      raise
     end
   end
 end

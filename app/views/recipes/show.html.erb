@@ -33,7 +33,7 @@
       <h3>Ingredients</h3>
       <ul>
       <% @recipe.recipe_ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.unit.empty? ? ingredient.ingredient.name.pluralize(ingredient.quantity) : ingredient.ingredient.name }"  %></li>
+        <li><%= "#{ingredient.quantity % 1 == 0 ? ingredient.quantity.to_i : ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.unit.empty? ? ingredient.ingredient.name.pluralize(ingredient.quantity) : ingredient.ingredient.name }"  %></li>
       <% end %>
       </ul>
     </div>
