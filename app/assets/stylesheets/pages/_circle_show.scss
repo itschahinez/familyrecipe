@@ -114,7 +114,22 @@
   color: $primary-color;
 }
 
-.circle-icon {
-  color: $primary-color;
+.footer-circle {
+  background-color: white;
+  border-top: 1px solid $primary-color;
+  position: sticky;
+  height: 75px;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: auto;
+  margin-bottom: 10px;
+  justify-items: center;
+}
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
