@@ -2,14 +2,20 @@
 
 <div class="main-container">
 
-  <%# <%= link_to 'Visio', circle_visio_path(@circle) %>
-
   <div class="circle-name-add">
     <div class="circle-name">
-      <h1><%= @circle.name %></h1>
+      <% frame_id = dom_id(@circle, "name_turbo_frame") %>
+      <%= form_with model: @circle do |form| %>
+        <%= turbo_frame_tag frame_id do %>
+          <h1><%= @circle.name %></h1>
+          <%= link_to edit_circle_path(@circle) do %>
+            <i class="fa-solid fa-pen-to-square"> Edit name</i>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
 
-    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">
       <i class="fa-solid fa-user-plus fa-lg icon-color"></i>
     </button>
 
@@ -52,13 +58,19 @@
         </div>
       </div>
     </div>
-
   </div>
-
 
   <div class="circle-member-container">
 
-    <% @circle.users.each do |member| %>
+      <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to leave this circle?" }, class: "exit-circle" do %>
+        <i class="fa-solid fa-person-walking-arrow-right">  Leave circle</i>
+      <% end %>
+
+    <%# <%= link_to circle_visio_path(@circle), class: "visio-circle" do %>
+        <%# <i class="fa-solid fa-video"> Call your circle</i>
+       <% end %>
+
+    <% @circle.users.uniq.each do |member| %>
       <div class="circle-member-info">
         <% if member.photo.attached? %>
           <%= cl_image_tag member.photo&.key, class:"avatar"%>
@@ -67,12 +79,11 @@
         <% end %>
         <%= member.first_name %>
       </div>
-
-      <%# <div class="delete-member">
-        <i class="fa-solid fa-trash-can"></i>
-      </div> %>
-
         <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <%= link_to "Call your circle", circle_visio_path(@circle), class: "button-green visio-circle"%>
       </div>
 
     <div class="recipe-circle">
@@ -81,11 +92,12 @@
         <h2><%= @circle.name %> Recipes</h2>
       </div>
 
-      <div class="recipe-circle-add">
-
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalRecipe" class="modify-button">
           <i class="fa-solid fa-plus fa-xl clr-primary"></i>
         </button>
+
+      <div class="recipe-circle-add">
+
 
         <div class="modal fade" id="exampleModalRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -101,7 +113,7 @@
               <div class="modal-body">
                 <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
                   <%= cr.hidden_field :circle_id, value: @circle.id %>
-                  <%= cr.association :recipe, collection: Recipe.all - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
+                  <%= cr.association :recipe, collection: Recipe.where.not(creator_id: nil) - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
                   <div class="center-button">
                     <%= cr.submit "Add to group", class: 'button-green' %>
                   </div>
@@ -112,17 +124,24 @@
           </div>
         </div>
 
-
-
-        <%# <%= link_to new_circle_recipe_path(@circle) do %>
-          <%# <i class="fa-solid fa-plus fa-xl"></i>
-        <% end %>
     </div>
   </div>
 
   <div class="cards">
-    <% @circle.recipes.each do |recipe|%>
-      <%= render "recipes/recipe_card", recipe: recipe %>
+    <% @circle.recipes.uniq.each do |recipe|%>
+      <div class="card-category circle-recipes-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food' %>)">
+        <%= link_to recipe_path(recipe), class: "recipe-link" do %>
+          <%= link_to circle_recipe_path(@circle, recipe: recipe), data: { turbo_method: :delete }, class: "delete-recipe-icon" do %>
+            <i class="fa-solid fa-trash-can"></i>
+          <% end %>
+          <div class="recipe-card-text">
+            <p><%= recipe.name %></p>
+            <div class="recipe-card-duration">
+              <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 

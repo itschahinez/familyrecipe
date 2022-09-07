@@ -13,8 +13,9 @@
           <h2><%= circle.name %></h2>
           <p><%= circle.recipes.count %> recipe<%= circle.recipes.count == 1 ? "" : "s" %></p>
         </div>
+
         <div class="member-infos">
-          <% circle.users.each do |member| %>
+          <% circle.users.uniq.each do |member| %>
             <% if member %>
               <%= cl_image_tag member.photo&.key, class:"avatar"%>
             <% else %>

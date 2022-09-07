@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_103718) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_092112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -112,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_103718) do
     t.integer "preptime_mn"
     t.integer "prep_time"
     t.integer "suggestion_id"
+    t.string "search"
     t.index ["creator_id"], name: "index_recipes_on_creator_id"
   end
 

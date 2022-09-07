@@ -7,11 +7,14 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <%= render "shared/navbar" unless @disable_navbar == true %>
     <%= render "shared/flashes" %>
+
+
 
     <%= yield %>
   </body>
