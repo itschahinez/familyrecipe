@@ -12,17 +12,17 @@
       <li class="menu-action">
         <%= link_to "Recipes", recipes_path, class: "navbar-content" %>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown toggle-img" data-controller="dropdown">
         <% if user_signed_in? && current_user.photo.attached?%>
-            <%= cl_image_tag current_user.photo&.key, class:"avatar dropdown-toggle"%>
+          <%= cl_image_tag current_user.photo&.key, class:"avatar dropdown-toggle", data: { action: 'click->dropdown#toggle' } %>
         <% else %>
-            <img class="avatar" alt="avatar" src="https://res.cloudinary.com/chahinezh/image/upload/v1662555387/sm6kcz9cbzcjndnubbib.jpg" />
+            <img class="avatar" alt="avatar" src="https://res.cloudinary.com/chahinezh/image/upload/v1662555387/sm6kcz9cbzcjndnubbib.jpg" data-action='click->dropdown#toggle' />
         <% end %>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <ul>
+        <div class="nav-item dropdown toggle-div d-none" data-dropdown-target='navitem'>
+          <ul class="">
             <% if user_signed_in? %>
-              <li class="menu-action">
-                <%= link_to "Logout", destroy_user_session_path, class: "navbar-content dropdown-item" %>
+              <li class="menu-action dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Logout", destroy_user_session_path, class: "navbar-content dropdown-item", method: :delete %>
               </li>
             <% else %>
               <li class="menu-action">

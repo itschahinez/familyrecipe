@@ -1,11 +1,15 @@
-  <div class="homepage-img">
-    <div class="container-homepage">
-      <% if user_signed_in?%>
-        <%= render "homepage_no_circle", event: @event %>
+<div class="container-homepage">
+  <% if user_signed_in?%>
+      <% if current_user.circles %>
+        <%= render "homepage_circle", event: @event %>
       <% else %>
-        <div class="homepage-content d-flex align-items-center">
-          <%= link_to 'Log in',  new_user_session_path, class: 'button-orange'%>
+        <div class="homepage-img">
+          <%= render "homepage_no_circle", event: @event %>
         </div>
       <% end %>
+  <% else %>
+    <div class="homepage-content d-flex align-items-center">
+      <%= link_to 'Log in',  new_user_session_path, class: 'button-orange'%>
     </div>
-  </div>
+  <% end %>
+</div>
