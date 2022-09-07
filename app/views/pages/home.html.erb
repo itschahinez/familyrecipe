@@ -1,21 +1,11 @@
-<%# <div class="homepage-centered"> %>
   <div class="homepage-img">
     <div class="container-homepage">
       <% if user_signed_in?%>
-            <div class="homepage-content">
-              <h1>Welcome <%= "#{current_user.first_name}" %> to <span>Family Recipe</span></h1>
-            </div>
-            <div class="homepage-content">
-              <%= link_to "Create a circle", new_circle_path, class: 'button-orange' %>
-            </div>
-            <div class="homepage-content">
-              <%= link_to "My recipes", recipes_path, class: 'button-orange' %>
-            </div>
-        <% else %>
-          <div class="homepage-content d-flex align-items-center">
-            <%= link_to 'Log in',  new_user_session_path, class: 'button-orange'%>
-          </div>
+        <%= render "homepage_no_circle", event: @event %>
+      <% else %>
+        <div class="homepage-content d-flex align-items-center">
+          <%= link_to 'Log in',  new_user_session_path, class: 'button-orange'%>
+        </div>
       <% end %>
     </div>
   </div>
-<%# </div> %>
