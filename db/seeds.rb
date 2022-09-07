@@ -10,7 +10,7 @@ puts "Creating seeds"
 puts "Creating users"
 
 cyril = User.create!(first_name: "Cyril", email: "cyril@gourmand.fr", password: 'secret')
-mercotte = User.create!(first_name: "Mercotte", email: "mercotte@gourmand.fr", password: 'secret')
+mercotte = User.create!(first_name: "Chahinez", email: "chahinez@gourmand.fr", password: 'secret')
 jojo = User.create!(first_name: "Jonathan", email: "jonathan@coco.fr", password: 'secret')
 
 cyril_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662558169/ycwlvxckaz0yegs2brdd.jpg")
