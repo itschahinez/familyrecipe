@@ -33,6 +33,12 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
   accepts_nested_attributes_for :circle_recipes
 
+  after_update :initialize_event
+
+  def initialize_event
+    Event.create_event(self, 'update')
+  end
+
   pg_search_scope :global_search,
   against: [ :name, :description, :category ],
   associated_against: {
@@ -46,6 +52,8 @@ class Recipe < ApplicationRecord
     end
   end
 
+
+  649300
   def self.create_one_from_api(suggestion_id, query)
     recipe_info_url = "https://api.spoonacular.com/recipes/#{suggestion_id}/information?apiKey=#{APIKEY}"
     suggestion_detail = RestClient.get recipe_info_url, {accept: :json}
@@ -79,7 +87,7 @@ class Recipe < ApplicationRecord
 
         suggestion_detail["extendedIngredients"].each do |ingredient|
           i = Ingredient.find_or_create_by(name: ingredient["name"], unit: ingredient["unit"])
-          RecipeIngredient.create(ingredient: i, quantity: ingredient["amount"], recipe: recipe)
+          RecipeIngredient.create(ingredient: i, quantity: ingredient["amount"].to_f, recipe: recipe)
         end
       end
     end

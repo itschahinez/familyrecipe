@@ -19,7 +19,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @circle_recipe = CircleRecipe.new
     @comment = Comment.new
-
+    all_friends = current_user.circles.map(&:users).flatten.uniq
+    @all_friends_comments = Comment.where(user: all_friends).where(recipe: @recipe)
   end
 
   def new
@@ -48,7 +49,6 @@ class RecipesController < ApplicationController
     if @recipe.creator_id.nil?  #Don't remove: important to add a new recipe from suggestions
       @recipe.update(creator_id: current_user.id)
       flash[:alert] = "#{@recipe.name} has been added to your recipes"
-      Event.new(description: "#{@recipe.name} has been added to your recipes")
     end
     redirect_to suggestions_path(@recipe)
   end
@@ -57,10 +57,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path, status: :see_other
-
-    # @comment = Comment.find(params[:id])
-    # @comment.destroy
-    # redirect_to restaurant_path(@comment.recipe), status: :see_other
   end
 
   def autocomplete
