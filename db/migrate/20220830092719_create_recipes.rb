@@ -4,7 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.integer :category
-      t.references :creator, foreign_key: { to_table: :users }
+      t.references :creator, foreign_key: { to_table: :users }, null: true
       t.integer :prep_time
 
       t.timestamps
