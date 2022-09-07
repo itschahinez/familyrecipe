@@ -8,13 +8,17 @@
     <h2>Recent Events</h2>
   </div>
 </div>
-<div class="phone-container">
-  <div class="notification-container">
-    <ul>
-    <% @events.each do |event| %>
-      <li><%= event.description %></li>
-    <% end %>
-    </ul>
+<div class="notif-container">
+  <ul>
+  <% @events.each do |event| %>
+  <div class="little-container">
+    <li>
+    <div class="time">
+      <small><%= event.created_at.strftime("%d-%m-%Y / %Hh%M") %></small><br>
+    </div>
+      <%= event.description %>
+    </li>
   </div>
+  <% end %>
+  </ul>
 </div>
-<i class="fa-solid fa-circle fa-2xl circle-phone"></i>
