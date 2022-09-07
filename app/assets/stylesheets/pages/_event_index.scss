@@ -7,10 +7,6 @@
 
 .event-container {
   margin: 20px 20px auto 20px;
-
-  .fa-bell {
-    vertical-align: middle;
-  }
 }
 
 .title-events {
@@ -34,41 +30,25 @@
 
 }
 
-.phone-container {
-  width: 273px;
-  height: 387px;
-  background-color: #D9D9D9;
-  display: flex;
-  justify-content: center;
-  border-radius: 20px;
-  margin-left: 60px;
-  margin-top: 20px;
-
-
+.little-container {
+  re
+  li {
+    list-style: none;
+    width: 100%;
+    font-size: small;
+  }
 }
 
-.notification-container {
-  background-color: white;
-  width: 237.53px;
-  height: 285.05px;
-  display: grid;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 40px;
-  background-color: $rectangle-color;
-
-  li {
-    margin: 18px 10px;
-  }
+.notif-container {
+  margin: 20px 20px 0 20px;
 
   ul {
-    padding-left: 16px;
+    padding-left: 0;
   }
 }
 
-.circle-phone {
-  position: absolute;
-  bottom: 65px;
-  left: 183px;
-  color: #69626D;
+.time {
+  border-bottom: 1px solid $second-color;
+  margin-bottom: 10px;
+  font-style: italic;
 }
