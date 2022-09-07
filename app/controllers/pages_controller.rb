@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @disable_navbar = true
-    @events = Event.all.order(created_at: :desc).limit(5)
+    @events = Event.all.order(created_at: :desc).limit(4)
   end
 
   def visio

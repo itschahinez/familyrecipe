@@ -33,10 +33,10 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
   accepts_nested_attributes_for :circle_recipes
 
-  after_update :initialize_event
+  after_create :initialize_event
 
   def initialize_event
-    Event.create_event(self, 'update')
+    Event.create_event(self, 'create')
   end
 
   pg_search_scope :global_search,
