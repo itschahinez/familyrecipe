@@ -7,10 +7,12 @@
       <% frame_id = dom_id(@circle, "name_turbo_frame") %>
       <%= form_with model: @circle do |form| %>
         <%= turbo_frame_tag frame_id do %>
+        <div class="d-flex">
           <h1><%= @circle.name %></h1>
           <%= link_to edit_circle_path(@circle) do %>
-            <i class="fa-solid fa-pen-to-square"> Edit name</i>
+            <i class="fa-solid fa-pen-to-square py-2 px-3"></i>
           <% end %>
+        </div>
         <% end %>
       <% end %>
     </div>
@@ -63,7 +65,7 @@
   <div class="circle-member-container">
 
       <%= link_to circle_participation_path(@circle), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to leave this circle?" }, class: "exit-circle" do %>
-        <i class="fa-solid fa-person-walking-arrow-right">  Leave circle</i>
+        <i class="circle-icon fa-solid fa-person-walking-arrow-right"></i>
       <% end %>
 
     <%# <%= link_to circle_visio_path(@circle), class: "visio-circle" do %>
@@ -88,17 +90,15 @@
 
     <div class="recipe-circle">
 
-      <div class="recipe-circle-name">
-        <h2><%= @circle.name %> Recipes</h2>
-      </div>
-
+      <div class="recipe-circle-name d-flex">
+        <h2>Recipes</h2>
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalRecipe" class="modify-button">
           <i class="fa-solid fa-plus fa-xl clr-primary"></i>
         </button>
+      </div>
+
 
       <div class="recipe-circle-add">
-
-
         <div class="modal fade" id="exampleModalRecipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -115,7 +115,7 @@
                   <%= cr.hidden_field :circle_id, value: @circle.id %>
                   <%= cr.association :recipe, collection: Recipe.where.not(creator_id: nil) - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
                   <div class="center-button">
-                    <%= cr.submit "Add to group", class: 'button-green' %>
+                    <%= cr.submit "Add to circle", class: 'button-green' %>
                   </div>
                 <% end %>
               </div>

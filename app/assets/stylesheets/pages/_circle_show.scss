@@ -4,8 +4,8 @@
 
 .circle-name {
   .fa-solid {
-    color: black;
-    font-size: 10px;
+    color: $primary-color;
+    font-size: x-large;
 
     &:hover {
       color: $primary-color;
@@ -38,7 +38,7 @@
   margin-bottom: 20px;
   padding: 30px 25px 15px 25px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
 }
 
@@ -57,8 +57,8 @@
   position: absolute;
   top: 10%;
   right: 3%;
-  color: black;
-  font-size: 10px;
+  color: $primary-color;
+  font-size: x-large;
 
   &:hover {
     color: $primary-color;
@@ -112,4 +112,9 @@
   top: 3px;
   right: 8px;
   color: $primary-color;
+}
+
+.circle-icon {
+  color: $primary-color;
+
 }
