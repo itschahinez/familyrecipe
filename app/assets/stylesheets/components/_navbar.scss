@@ -78,3 +78,13 @@
     color: white;
   }
 }
+
+.toggle-img {
+  position: relative;
+
+  .toggle-div {
+    position: absolute;
+    top: 50px;
+    right: 150px;
+  }
+}
