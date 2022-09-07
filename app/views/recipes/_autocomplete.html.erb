@@ -1,0 +1,5 @@
+<% unless @search_results.blank? %>
+  <% @search_results.each do |result| %>
+    <li role="option" data-search-target="autocomplete" data-action="click->search#submit"><%= result.capitalize %></li>
+  <% end %>
+<% end %>

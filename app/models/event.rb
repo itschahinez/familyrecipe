@@ -15,8 +15,6 @@ class Event < ApplicationRecord
       Event.create!(description: "#{element.user.first_name} has been deleted to #{element.circle.name}")
     when Comment && action == 'create'
       Event.create!(description: "#{element.comment} has been added to #{element.recipe.name} by #{element.comment.user.first_name}")
-    else
-      "No notifications"
     end
   end
 end

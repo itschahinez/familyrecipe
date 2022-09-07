@@ -4,9 +4,9 @@
 <%# Mettre search bar %>
 <%# Faire en sorte qu'on puisse chercher plusieurs ingrédients %>
 <%# Avoir une liste de tous les ingrédients quand on tape %>
-<div class="main-container">
-  <h1>Find inspiration</h1>
-  <h3>Get new ideas by ingredient!</h3>
+<div class="main-container pb-3">
+  <h1 class="py-2">Find inspiration</h1>
+  <h3 class="pb-2">Get new ideas by ingredient!</h3>
 
   <div class="d-flex recipe-search-container justify-content-center mt-4">
       <%= form_with url: suggestions_path, method: :get, class: "d-flex recipe-search" do |f| %>
@@ -19,15 +19,16 @@
         <%= f.button '<i class="fa-solid fa-magnifying-glass fa-lg"></i>'.html_safe, class: "search-bar-button" %>
       <% end %>
     </div>
+</div>
 
-
+<div class="allrecipes pb-5">
   <% if !session[:search].blank? %>
     <div>
       <% @suggestions.each do |recipe| %>
         <%= link_to suggestion_path(recipe.id), class: "recipe-link" do %>
-          <div class="card-category suggestion-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food'%>)">
+          <div class="card-category w-100" id="suggestion-card", style="background-image: linear-gradient(to bottom, rgba(255, 255, 252, 0.1), rgba(40, 40, 49, 0.42)), url(<%= recipe.photo.attached? ? "#{cl_image_path recipe.photo.key}" : 'https://source.unsplash.com/random/?food'%>)">
             <div class="recipe-card-text">
-              <p><%= recipe.name %></p>
+              <p><%= recipe.name.capitalize %></p>
               <div class="recipe-card-duration">
                 <span><i class="fa-solid fa-clock"></i><%= recipe.preptime_hour > 0 ? " #{recipe.preptime_hour} h" : "" %><%= recipe.preptime_mn > 0 ? " #{recipe.preptime_mn} min" : "" %></span>
               </div>
