@@ -16,7 +16,7 @@
   </div>
 
   <div class="creator-infos">
-    <p>Creator</p>
+    <p>Added by</p>
       <% if @recipe.creator&.photo&.attached?%>
         <%= cl_image_tag @recipe.creator&.photo&.key, class:"avatar"%>
       <% else %>
@@ -33,7 +33,7 @@
       <h3>Ingredients</h3>
       <ul>
       <% @recipe.recipe_ingredients.each do |ingredient| %>
-        <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.name}"  %></li>
+        <li><%= "#{ingredient.quantity} #{ingredient.ingredient.unit} #{ingredient.ingredient.unit.empty? ? ingredient.ingredient.name.pluralize(ingredient.quantity) : ingredient.ingredient.name }"  %></li>
       <% end %>
       </ul>
     </div>
@@ -78,7 +78,7 @@
 <div class="comment-container">
 <%# <div class="main-container my-4 mx-5 "> %>
   <div class="d-flex justify-content-left">
-    <h3>Add to a group</h3>
+    <h3>Add to a circle</h3>
   </div>
   <div class="d-flex justify-content-left">
     <%= simple_form_for @circle_recipe, url: circle_recipes_path, method: :post do |cr| %>
@@ -99,25 +99,27 @@
     </div>
   <% end %>
 
-  <h2>Comments</h2>
-  <div class = "box-comment">
-    <ul>
-      <% @recipe.comments.each do |comment| %>
-        <small class="comment-date"><%= comment.created_at.strftime("%d-%m-%Y / %Hh%M") %></small>
-        <li class="comment-description">
-          <div>
-            <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani"/>
-          </div>
-          <div class="px-4">
-            <%= comment.content %>
-          </div>
-          <% if comment.user == current_user %>
-            <%= link_to recipe_comment_path(comment.recipe.id, comment), data: { turbo_method: :delete } do %>
-              <i class="fa-solid fa-trash-can fa-lg"></i>
+  <% if !@all_friends_comments.empty? %>
+    <h2>Comments</h2>
+    <div class = "box-comment">
+      <ul>
+        <% @all_friends_comments.each do |comment| %>
+          <small class="comment-date"><%= comment.created_at.strftime("%d-%m-%Y / %Hh%M") %></small>
+          <li class="comment-description">
+            <div>
+              <img class="avatar" alt="avatar" src=<%= comment.user.photo.attached? ? "#{cl_image_path comment.user.photo.key}" : "https://images.unsplash.com/photo-1501086975536-1220c4cf61f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" %>>
+            </div>
+            <div class="px-4">
+              <%= comment.content %>
+            </div>
+            <% if comment.user == current_user %>
+              <%= link_to recipe_comment_path(comment.recipe.id, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" } do %>
+                <i class="fa-solid fa-trash-can fa-lg"></i>
+              <% end %>
             <% end %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>
