@@ -16,7 +16,7 @@
         <% if user_signed_in? && current_user.photo.attached?%>
           <%= cl_image_tag current_user.photo&.key, class:"avatar dropdown-toggle", data: { action: 'click->dropdown#toggle' } %>
         <% else %>
-          <img class="avatar" alt="avatar" src="https://kitt.lewagon.com/placeholder/users/cveneziani" data-action='click->dropdown#toggle'/>
+            <img class="avatar" alt="avatar" src="https://res.cloudinary.com/chahinezh/image/upload/v1662555387/sm6kcz9cbzcjndnubbib.jpg" data-action='click->dropdown#toggle' />
         <% end %>
         <div class="nav-item dropdown toggle-div d-none" data-dropdown-target='navitem'>
           <ul class="">
