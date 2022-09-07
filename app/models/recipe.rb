@@ -40,12 +40,9 @@ class Recipe < ApplicationRecord
   end
 
   pg_search_scope :global_search,
-  against: [ :name, :description ],
+  against: [ :name, :description, :category ],
   associated_against: {
     ingredients: [:name]
-  },
-  using: {
-    tsearch: { prefix: true }
   }
 
   def self.create_all_from_api(query)
