@@ -13,11 +13,11 @@ cyril = User.create!(first_name: "Cyril", email: "cyril@gourmand.fr", password: 
 mercotte = User.create!(first_name: "Mercotte", email: "mercotte@gourmand.fr", password: 'secret')
 jojo = User.create!(first_name: "Jonathan", email: "jonathan@coco.fr", password: 'secret')
 
-cyril_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/cld-sample.jpg")
+cyril_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662558169/ycwlvxckaz0yegs2brdd.jpg")
 cyril.photo.attach(io: cyril_picture, filename: "Mat.jpg", content_type: "image/jpg")
-mercotte_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+mercotte_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662558633/dnesqxnprs1x1zqsd7eh.jpg")
 mercotte.photo.attach(io: mercotte_picture, filename: "Oliv.jpg", content_type: "image/jpg")
-jojo_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662027214/sample.jpg")
+jojo_picture = URI.open("https://res.cloudinary.com/chahinezh/image/upload/v1662558583/vhzvjoapo3qlvky8jx8d.jpg")
 jojo.photo.attach(io: jojo_picture, filename: "Cha.jpg", content_type: "image/jpg")
 
 puts "Users done"
