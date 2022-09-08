@@ -1,3 +1,4 @@
+<%= content_for(:color) { 'navbar-orange'} %>
 <% if @circle.users.any? { |user| user == current_user } %>
   <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
   <script>
