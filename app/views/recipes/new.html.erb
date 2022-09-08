@@ -10,30 +10,19 @@
     <h4>Picture</h4>
       <%= f.input :photo, as: :file, label: false %>
     <h4>What's the name of your recipe?</h4>
-      <%= f.input :name, label: false %>
+      <%= f.input :name, label: false, placeholder: "Grandma's famous sandwiches" %>
 
-      <div class="categories-preptime" >
       <h4>Category and prep time</h4>
-        <div class="preptime-input d-flex row">
-          <div class="col-6">
-            <%= f.input :category, label: false %>
-          </div>
-          <div class="col-6">
-            <div class="row preptime-fields">
-              <div class="col-5">
-                <%= f.input :preptime_hour, as: :numeric,  input_html: { min: 0 }, label: false %>
-              </div>
-                <div class="col-2">
-                <p id="time-hour">  h  </p>
-              </div>
-              <div class="col-5">
-                  <%= f.input :preptime_mn, as: :numeric, input_html: { min: 0, max: 45, step: 15 }, label: false %>
-              </div>
-            </div>
-          </div>
+      <div class="categories-preptime" >
+        <div class="preptime-input d-flex">
+          <%= f.input :category, label: false, wrapper_html: { class: 'me-2'}, placeholder: 'Eg: Appetizer' %>
+          <%= f.input :preptime_hour, as: :numeric,  input_html: { min: 0, class: 'hour-input' }, label: false, placeholder: "hh" %>
+          <p id="time-hour" class='mx-2'>:</p>
+          <%= f.input :preptime_mn, as: :numeric, input_html: { min: 0, max: 45, step: 15, class: 'minute-input' }, label: false, placeholder:  "mn" %>
         </div>
+      </div>
 
-      <div class="ingredients" >
+        <div class="ingredients" >
         <h4>Ingredients</h4>
           <template data-nested-form-target="template">
           <div class="ingredients-input d-flex">

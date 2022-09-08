@@ -1,6 +1,6 @@
 <div class="nested-form-wrapper d-flex align-items-center" data-new-record="<%= ri.object.new_record? %>">
-  <%= ri.input :quantity, as: :numeric,  input_html: { min: 0, class: "input-quantity" }, label: false %>
-  <%= ri.association :ingredient, collection: Ingredient.all.order(:name), label_method: :name_and_unit, input_html: {class: "input-ingredient"}, label: false %>
+  <%= ri.input :quantity, as: :numeric,  input_html: { min: 0, class: "input-quantity" }, label: false, placeholder: 'Qty' %>
+  <%= ri.association :ingredient, collection: Ingredient.all.order(:name), label_method: :name_and_unit, input_html: {class: "input-ingredient"}, label: false, selected: Ingredient.all.order(:name).first  %>
 
   <button type="button" data-action="nested-form#remove" class="cross-delete b-0 text-center"><i class="fa-solid fa-trash-can"></i></button>
 
