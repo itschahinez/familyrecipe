@@ -48,7 +48,7 @@ class RecipesController < ApplicationController
     # @recipe.update(recipe_params)
     if @recipe.creator_id.nil?  #Don't remove: important to add a new recipe from suggestions
       @recipe.update(creator_id: current_user.id)
-      flash[:alert] = "#{@recipe.name} has been added to your recipes"
+      flash[:notice] = "#{@recipe.name} has been added to your recipes"
     end
     redirect_to suggestions_path(@recipe)
   end

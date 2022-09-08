@@ -80,11 +80,11 @@
   }
 }
 
-.recipe-circle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+// .recipe-circle {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
 
 .recipe-circle-name h2 {
   margin-top: 25px;
@@ -111,6 +111,10 @@
   position: absolute;
   top: 3px;
   right: 8px;
+  color: $primary-color;
+}
+
+.delete-recipe-icon:hover {
   color: $primary-color;
 }
 
