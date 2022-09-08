@@ -33,7 +33,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
   accepts_nested_attributes_for :circle_recipes
 
-  after_create :initialize_event
+  after_commit :initialize_event, on: :create
 
   def initialize_event
     Event.create_event(self, 'create')
