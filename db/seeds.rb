@@ -1,6 +1,8 @@
 require "open-uri"
 
 Recipe.destroy_all
+Event.destroy_all
+Comment.destroy_all
 User.destroy_all
 Ingredient.destroy_all
 Circle.destroy_all
