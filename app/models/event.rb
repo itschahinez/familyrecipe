@@ -12,7 +12,8 @@ class Event < ApplicationRecord
     elsif element.class.to_s == "Recipe" && action == 'create'
       Event.create!(description: "#{element.name} has been created by #{Current.user.first_name}")
     elsif element.class.to_s == "Comment" && action == 'create'
-      Event.create!(description: "#{element.comment} has been added to #{element.recipe.name} by #{Current.user.first_name}")
+      Current.user = element.user
+      Event.create!(description: "#{element.content} has been added to #{element.recipe.name} by #{Current.user.first_name}")
     end
   end
 end
