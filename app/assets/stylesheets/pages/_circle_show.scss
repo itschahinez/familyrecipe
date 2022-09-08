@@ -120,9 +120,10 @@
 
 .footer-circle {
   background-color: white;
-  border-top: 1px solid $primary-color;
+  border-top: 1px solid $second-color;
   position: sticky;
-  height: 75px;
+  height: 70px;
+  max-height: 70px;
   bottom: 0;
   display: flex;
   justify-content: space-around;
@@ -136,4 +137,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.footer-button {
+  border: none;
+  background-color: transparent;
+  margin-left: 15px;
+  color: $second-color !important;
 }

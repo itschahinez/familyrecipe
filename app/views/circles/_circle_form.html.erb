@@ -1,10 +1,10 @@
 <% if f.object.new_record? %>
   <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex">
     <%= f.hidden_field :id %>
     <%= f.association :user, collection: @other_users, label_method: lambda { |user| "#{user.first_name}"}, class: 'user-input', wrapper_html: { class: 'custom-input'}, label: false, prompt: 'User' %>
 
-    <button type="button" data-action="nested-form#remove" class="modify-button"><i class="fa-solid fa-trash-can fa-xl icon-color"></i></button>
+    <button type="button" data-action="nested-form#remove" class="modify-button"><i class="fa-solid fa-trash-can fa-xl icon-color pb-3"></i></button>
     </div>
 
     <%= f.hidden_field :_destroy %>
