@@ -31,7 +31,7 @@
 
   <% if @my_recipes.empty? && @my_circles.empty? %>
     <div class="no-recipes">
-      <h3>You don't have any recipe yet!</h3>
+      <h3>You don't have any recipes yet!</h3>
       <img id="no-recipes-image" src="https://res.cloudinary.com/chahinezh/image/upload/v1662067855/faxt2ojk55dmyxq0sfou.jpg" alt="empty plate">
       <div class="write-recipe-button">
         <%= link_to "Write a recipe", "/recipes/new", class: "button-orange" %>

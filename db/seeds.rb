@@ -108,9 +108,9 @@ puts "Tzatziki done"
 
 eggplant_pasta = Recipe.create!(
   name: 'Eggplant Pasta',
-  description: '1. Heat 1 tablespoon oil in a skillet over medium heat. Add pancetta; cook until browned on the edges, about 5 minutes. Add eggplant and remaining 2 tablespoons olive oil; cook until eggplant is slightly softened, about 5 minutes.<br>
-  2. Pour marinara sauce, tomatoes, and wine into the skillet. Add red pepper flakes, black pepper, garlic salt, sugar, and white pepper. Stir and cover. Let sauce simmer until flavors combine, about 20 minutes.<br>
-  3. Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain; mix with the sauce.',
+  description: 'Heat 1 tablespoon oil in a skillet over medium heat. Add pancetta; cook until browned on the edges, about 5 minutes. Add eggplant and remaining 2 tablespoons olive oil; cook until eggplant is slightly softened, about 5 minutes.
+  Pour marinara sauce, tomatoes, and wine into the skillet. Add red pepper flakes, black pepper, garlic salt, sugar, and white pepper. Stir and cover. Let sauce simmer until flavors combine, about 20 minutes.
+  Bring a large pot of lightly salted water to a boil. Add penne and cook, stirring occasionally, until tender yet firm to the bite, about 11 minutes. Drain; mix with the sauce.',
   category: "main",
   creator_id: cyril.id,
   preptime_hour: 0,
@@ -135,6 +135,8 @@ butter = Ingredient.create!(name: 'butter', unit: 'gr')
 flour = Ingredient.create!(name: 'flour', unit: 'gr')
 banana = Ingredient.create!(name: 'banana', unit: '')
 vegetable_oil = Ingredient.create!(name: 'vegetable oil', unit: 'ml')
+milk = Ingredient.create!(name: 'milk', unit: 'cl')
+maple_syrup = Ingredient.create!(name: 'maple syrup', unit: 'cl')
 
 puts "created rest of ingredients"
 
@@ -155,3 +157,6 @@ CircleRecipe.create!(circle: circle1, recipe: chocolate_mousse)
 CircleRecipe.create!(circle: circle1, recipe: tzatziki)
 CircleRecipe.create!(circle: circle2, recipe: eggplant_parmesan)
 puts "created circle recipes"
+
+Comment.create!(user: mercotte, recipe: eggplant_parmesan, content: "Delicious! Also great with a bit of parsley on top.")
+Comment.create!(user: cyril, recipe: eggplant_parmesan, content: "Good idea! I'll give it a try!")
