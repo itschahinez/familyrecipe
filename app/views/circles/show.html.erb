@@ -38,17 +38,17 @@
 
               <div>
                 <div data-nested-form-target="target"></div>
-                <button type="button" data-action="nested-form#add" class="modify-button">
-                  <i class="fa-solid fa-user-plus fa-lg icon-color"></i>
-                </button>
-              </div>
+                  <button type="button" data-action="nested-form#add" class="modify-button">
+                    <i class="fa-solid fa-user-plus fa-lg icon-color"></i>
+                  </button>
+                </div>
               <template data-nested-form-target="template">
                 <%= f.simple_fields_for :participations, child_index: 'NEW_RECORD' do |p_fields| %>
                   <%= render "circle_form", f: p_fields %>
                 <% end %>
               </template>
               <div class="center-button">
-                <%= f.submit "Update your circle", class: 'button-green' %>
+                <%= f.submit "Update your circle", class: 'button-green py-3' %>
               </div>
 
             <% end %>
@@ -111,11 +111,10 @@
                   <%= cr.hidden_field :circle_id, value: @circle.id %>
                   <%= cr.association :recipe, collection: Recipe.where.not(creator_id: nil) - @circle.recipes, label: false, input_html: {class: "search-input-field"} %>
                   <div class="center-button">
-                    <%= cr.submit "Add to circle", class: 'button-green' %>
+                    <%= cr.submit "Add to circle", class: 'button-green py-3' %>
                   </div>
                 <% end %>
               </div>
-
             </div>
           </div>
         </div>
@@ -147,20 +146,20 @@
 
   <div class="footer-circle d-flex">
     <div id="add-recipe my-3">
-     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalRecipe" class="modify-button">
-          <i class="fa-solid fa-plus fa-xl clr-primary"></i>
+     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalRecipe" class="footer-button">
+          <i class="fa-solid fa-plus fa-xl"></i>
       </button>
     </div>
 
     <div id="add-member my-3">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="modify-button">
-        <i class="fa-solid fa-user-plus fa-lg icon-color"></i>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="footer-button">
+        <i class="fa-solid fa-user-plus fa-lg"></i>
       </button>
     </div>
 
     <div id="chatroom my-3">
       <%= link_to circle_visio_path(@circle) do %>
-          <i class="fa-solid fa-video clr-primary modify-button"></i>
+          <i class="fa-solid fa-video footer-button"></i>
         <% end %>
     </div>
   </div>
