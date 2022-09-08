@@ -1,24 +1,29 @@
 <% @disable_navbar = false %>
 <%= content_for(:color) { 'navbar-white'} %>
 
-<img class="banner-homepage-circle" src="https://images.unsplash.com/photo-1657299170937-3c87404f01c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="friends share food">
-<div class="event-container">
-  <div class="title-events">
-    <i class="fa-solid fa-bell fa-lg"></i>
-    <h2>Recent Events</h2>
-  </div>
-</div>
-<div class="notif-container">
-  <ul>
-  <% @events.each do |event| %>
-  <div class="little-container">
-    <li class="event-list">
-    <div class="time">
-      <small><%= event.created_at.strftime("%d-%m-%Y / %Hh%M") %></small><br>
+<div class="container-homepage-2">
+  <div class="banner-homepage-circle">
+    <h1>Welcome <%= "#{current_user.first_name}" %> to <span>Family Recipe</span></h1>
+    <%# <img class="banner-homepage-circle" src="https://images.unsplash.com/photo-1657299170937-3c87404f01c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="friends share food"> %>
+    <div class="event-container">
+      <div class="title-events">
+        <i class="fa-solid fa-bell fa-lg"></i>
+        <h2>Notifications</h2>
+      </div>
     </div>
-      <%= event.description %>
-    </li>
+    <div class="notif-container">
+      <ul>
+        <% @events.each do |event| %>
+          <div class="little-container">
+            <li class="event-list">
+              <div class="time">
+                <small><%= event.created_at.strftime("%d-%m-%Y / %Hh%M") %></small><br>
+              </div>
+                <%= event.description %>
+            </li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <% end %>
-  </ul>
 </div>

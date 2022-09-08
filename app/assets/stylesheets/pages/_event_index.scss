@@ -1,18 +1,39 @@
+
 .banner-homepage-circle {
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
   width: 100%;
-  height: 288px;
+  height: 812px;
   object-fit: cover;
-  margin-top: 35px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  // background-position: center;
+  background-position: bottom;
+
+  span {
+    font-family: $title-homepage;
+    font-size: 50px;
+  }
+
+  h1 {
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 185px;
+  }
+
 }
 
 .event-container {
   margin: 20px 20px auto 20px;
+  position: absolute;
+  top: 340px;
 }
 
 .title-events {
   display: flex;
   justify-content: left;
-  color: $primary-color;
+  color: white;
 
   .fa-bell {
     margin-right: 20px;
@@ -42,6 +63,23 @@ li.event-list {
 
   ul {
     padding-left: 0;
+    position: absolute;
+    left: 0px;
+    margin: auto 20px;
+    bottom: 23px;
+    opacity: 0.9;
+  }
+
+  .little-container {
+    background-color: $rectangle-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    height: 90px;
   }
 }
 
