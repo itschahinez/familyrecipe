@@ -15,3 +15,6 @@ application.register("insert-recipe-image", InsertRecipeImageController)
 
 import SearchController from "./search_controller"
 application.register("search", SearchController)
+
+import { Autocomplete } from 'stimulus-autocomplete'
+application.register('autocomplete', Autocomplete)
