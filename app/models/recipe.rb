@@ -97,4 +97,21 @@ class Recipe < ApplicationRecord
     my_circles = user.circles.map { |circle| circle.recipes.global_search(query) }
     [my_recipes, my_circles].flatten.uniq
   end
+
+  def self.autocomplete_recipes_and_categories(query, logged_user)
+    user = User.find(logged_user.id)
+    my_recipes_ids = user.recipes.map(&:id)
+    my_circle_recipes_ids = user.circles.map { |circle| circle.recipes.map(&:id) }.flatten!
+    all_my_recipes_ids = [my_recipes_ids, my_circle_recipes_ids].flatten.uniq
+    my_recipes_names = Recipe.get_info_by_search_criteria(all_my_recipes_ids, "name", query)
+    my_recipe_categories_names = Recipe.get_info_by_search_criteria(all_my_recipes_ids, "category", query)
+    [my_recipes_names, my_recipe_categories_names].flatten.uniq
+  end
+
+  private
+
+  def self.get_info_by_search_criteria(recipes_ids, search_criteria, query)
+    relevant_recipes = Recipe.where(id: recipes_ids).where("#{search_criteria} ilike ?", "#{query}%")
+    relevant_recipes.map(&"#{search_criteria}".to_sym)
+  end
 end
