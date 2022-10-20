@@ -90,4 +90,11 @@ class Recipe < ApplicationRecord
       end
     end
   end
+
+  def self.search(query, logged_user)
+    user = User.find(logged_user.id)
+    my_recipes = user.recipes.global_search(query)
+    my_circles = user.circles.map { |circle| circle.recipes.global_search(query) }
+    [my_recipes, my_circles].flatten.uniq
+  end
 end
