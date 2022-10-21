@@ -43,7 +43,7 @@ h4         {
 
 #recipe_preptime_hour, #recipe_preptime_mn {
   height: 52px;
-  width: 60px;
+  width: 75px;
   background-color: white;
   border-radius: 10px;
   border: none;
@@ -65,7 +65,7 @@ h4         {
 #time-hour{
   text-align: center;
   justify-content: center;
-  font-size: larger;
+  font-size: x-large;
 }
 
 // Banner:
@@ -101,14 +101,24 @@ h4         {
 
 // add description
 .description {
-  background-color: #FCFCF4;
+  background-color: $rectangle-color !important;
   width: 100%;
 }
 
 #recipe_description {
-  background-color: #FCFCF4;
+  background-color: $rectangle-color !important;
   box-shadow: none;
   border: none;
   border-radius: 0;
   width: 100%;
+}
+
+.hour-input {
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+.minute-input {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
